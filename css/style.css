@@ -51,6 +51,12 @@ h1
   width: 20%;
 }
 
+.boutons:hover {
+  background-color: #4d6bf5;
+  border : 2px solid transparent;
+  transform: scale(1.05);
+}
+
 .boutons:disabled {
   cursor: default;
 }

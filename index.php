@@ -13,11 +13,10 @@ require_once('include/config.php');
     <h1>Welcome to My Website</h1>
     <p>Thank you for visiting!</p>
     <div class="center">
-        <button class="boutons" onclick="window.location.href = '/about.html';">About</button>
-        <button class="boutons" onclick="window.location.href = '/services.html';">Services</button>
-        <button class="boutons" onclick="window.location.href = '/portfolio.html';">Portfolio</button>
-        <button class="boutons" onclick="window.location.href = '/contact.html';">Contact</button>
+        <button class="boutons" onclick="window.location.href = './guess.html';">Classique</button>
+        <button class="boutons" onclick="window.location.href = '/services.html';">A faire</button>
+        <button class="boutons" onclick="window.location.href = '/portfolio.html';">A faire</button>
+        <button class="boutons" onclick="window.location.href = '/contact.html';">A faire</button>
     </div>
-    
 </body>
 </html>
