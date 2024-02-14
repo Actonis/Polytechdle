@@ -1,7 +1,15 @@
+/* général */
+
 body
 {
-    background-color: #3d3d3d;
+    background-image: url('../images/fond_popo.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.76); /* Couleur blanche avec une transparence de 50% */
+    background-blend-mode: overlay;
     padding: 20px; /* Optional: Add some padding around the containers */
     color: white;
 }
@@ -20,7 +28,11 @@ h1
     align-items: center;
   }
 
+  /*header*/
 
+
+
+  /*Boutons*/
 
 .boutons {
   appearance: button;
@@ -49,6 +61,7 @@ h1
   -webkit-user-select: none;
   touch-action: manipulation;
   width: 20%;
+  align-items: center; /* Centre verticalement */
 }
 
 .boutons:hover {
@@ -64,3 +77,19 @@ h1
 .boutons:focus {
   box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
 }
+
+/*image titre*/
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Centre horizontalement */
+  height: 100px; 
+}
+
+.img-title {
+  display: block; /* Rend l'élément traitable comme un bloc */
+  margin-left: auto; /* Centre horizontalement l'élément */
+  margin-right: auto;
+}
+
