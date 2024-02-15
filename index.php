@@ -7,7 +7,7 @@ require_once('include/config.php');
 <head>
     <title>Polydle</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="icon" type="image/x-icon" href="https://files.u-angers.fr/data/f-8585d7373e4eb272.ico">
+    <link rel="icon" type="image/x-icon" href="https://files.u-angers.fr/data/f-29938d13d54331e2.png">
 </head>
 <body>
     <div class="container">
