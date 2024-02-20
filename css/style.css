@@ -64,3 +64,40 @@ h1
 .boutons:focus {
   box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
 }
+
+.guess-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+/* Initially hide the names list */
+#name-list {
+  display: none;
+  background-color: white;
+  color: black;
+  width: 200px; /* Adjust the width as needed */
+  height: 200px; /* Adjust the height as needed */
+  border: 1px solid black;
+  overflow-y: auto; /* Enable vertical scrolling if needed */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Center the names list horizontally */
+#name-list {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Style for individual name entries */
+#name-list p {
+  margin: 5px;
+}
+
+/* Show the names list only when text is typed in the input field */
+#guess:focus + #name-list {
+  display: block;
+}
