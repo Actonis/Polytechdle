@@ -2,6 +2,7 @@
 
 ## Polydle
 Etudiants : Mathis NAGMAR, Soren COMBALOT, Katia JAGUENEAU, Mathys CHIEN CHOW CHINE
+
 Explication du cours :
 Dans la cadre de la matière enseignée par Mehdi Lhommeau en 4 ème année, nous devons réaliser un
 projet en HTML5 et par la suite convaincre l’auditoire de l’intérêt de notre projet et ses qualités.
