@@ -6,7 +6,8 @@ require_once('include/config.php');
 <html>
 <head>
     <title>Polytechdle</title>
-    <link rel="icon" href="http://example.com/favicon.png">
+    <meta charset="UTF-8">
+    <link rel="icon" href="img/favicon-16x16.ico">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
