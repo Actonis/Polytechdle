@@ -15,10 +15,10 @@ require_once('include/config.php');
     </div>
     <p>Le jeu journalier par et pour Polytech !</p>
     <div class="center">
-        <button class="boutons" onclick="window.location.href = './guess.html';">Classique</button>
-        <button class="boutons" onclick="window.location.href = '/services.html';">A faire</button>
-        <button class="boutons" onclick="window.location.href = '/portfolio.html';">A faire</button>
-        <button class="boutons" onclick="window.location.href = '/contact.html';">A faire</button>
+        <button class="boutons" onclick="window.location.href = './guess.html';">Corps enseignant</button>
+        <button class="boutons" onclick="window.location.href = '/services.html';">Bureau des Etudiants</button>
+        <button class="boutons" onclick="window.location.href = '/portfolio.html';">Les 4A </button>
+        <button class="boutons" onclick="window.location.href = '/contact.html';">A venir !</button>
     </div>
 </body>
 </html>
