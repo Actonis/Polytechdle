@@ -14,16 +14,18 @@ window.onload = function () {
         //Code à faire qui appelle le php pour la vérification du guess.
         var formData = new FormData();
         //A récuperer ce qu'on écrit pour l'envoyer dans le php. Ici c'est fait automatiquement
-        formData.append('name', 'Medhi Lhommeau');
+        formData.append('nom', input.value);
 
         // Make a POST request using Fetch
-        fetch('http://localhost/temp/Polytechdle/php/verify.php', {
+        fetch('http://localhost/Projet/Polytechdle/php/verify.php', {
             method: 'POST',
             body: formData,
         })
         .then(response => response.json())
         .then(data => {
             console.log('Server response:', data);  
+
+            input.value = '';
         })
         .catch(error => {
             console.error('Error:', error);
