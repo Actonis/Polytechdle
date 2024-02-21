@@ -1,1 +1,6 @@
+
+favicon
 https://files.u-angers.fr/data/f-8585d7373e4eb272.ico
+
+minishrek
+https://files.u-angers.fr/data/f-29938d13d54331e2.png

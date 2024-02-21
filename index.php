@@ -11,7 +11,7 @@ require_once('include/config.php');
 </head>
 <body>
     <div class="container">
-        <img src="https://files.u-angers.fr/data/f-5606dce44e2af1ab.png" alt="Title"  class="img-title">
+        <img src="https://files.u-angers.fr/data/f-29938d13d54331e2.png" alt="Title"  class="img-title">
     </div>
     <p>Le jeu journalier par et pour Polytech !</p>
     <div class="center">
