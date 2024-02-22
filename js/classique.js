@@ -103,15 +103,21 @@ window.onload = function () {
             }
         }
 
-        if (!matchFound) {
+        var noResultMessage = namelist.querySelector('.no-result-message');
+
+        if (!matchFound && !noResultMessage) {
             var noResultMessage = document.createElement('p');
             noResultMessage.textContent = "Aucun résultat trouvé";
+            noResultMessage.className = "no-result-message";
             namelist.appendChild(noResultMessage);
-        } else {
+        } else if (!matchFound && noResultMessage) {
+            noResultMessage.style.display = "block";
+        }
+        else {
             // Remove "No result found" message if matches are found
             var noResultMessage = namelist.querySelector('.no-result-message');
             if (noResultMessage) {
-                noResultMessage.parentNode.removeChild(noResultMessage);
+                noResultMessage.remove();
             }
         }
     }
