@@ -1,4 +1,5 @@
 const express = require('express');
+const launchChecker = require('./launchChecker'); // Importer le fichier launchChecker.js
 const app = express();
 
 app.use(express.static('public'));
