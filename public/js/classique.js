@@ -1,15 +1,11 @@
 window.onload = function () {
 
     var namelist= document.getElementById("name-list");
-
-
-    fetch('http://localhost/Projet/Polytechdle/php/verify.php', {
+    fetch('/getNames', {
             method: 'GET',
         })
         .then(response => response.json())
-        .then(data => {
-            console.log('Server response:', data);  
-
+        .then(data => { 
             populateDatalist(data.names);
         })
         .catch(error => {
@@ -35,11 +31,21 @@ window.onload = function () {
     input.addEventListener("keydown", function (e) {
         if (e.code === "Enter") {  //checks whether the pressed key is "Enter"
 
-            input.value = namelist.children[0].textContent;
+            var firstVisibleName;
+            var namelistChildren = namelist.children;
 
-            verify();
-
-            namelist.style.display = "none";
+            for (var i = 0; i < namelistChildren.length; i++) {
+                if (namelistChildren[i].style.display === "block") {
+                        firstVisibleName = namelistChildren[i];
+                        break; // Found the first visible element, exit the loop
+                }
+            }
+            if (firstVisibleName) {
+                input.value = firstVisibleName.textContent;
+                verify();
+                namelist.style.display = "none";
+            }
+            
         }
     });
 
@@ -65,7 +71,7 @@ window.onload = function () {
         formData.append('nom', input.value);
 
         // Make a POST request using Fetch
-        fetch('http://localhost/Projet/Polytechdle/php/verify.php', {
+        fetch('/verify', {
             method: 'POST',
             body: formData,
         })
@@ -84,13 +90,33 @@ window.onload = function () {
         var typedText = input.value.trim();
         var names = namelist.getElementsByTagName("p");
         var name;
+        var matchFound = false;
 
         for (var i = 0; i < names.length; i++) {
             name = names[i].textContent;
             if (name.toLowerCase().indexOf(typedText.toLowerCase()) > -1) {
                 names[i].style.display = "block";
+                matchFound = true;
             } else {
                 names[i].style.display = "none";
+            }
+        }
+
+        var noResultMessage = namelist.querySelector('.no-result-message');
+
+        if (!matchFound && !noResultMessage) {
+            var noResultMessage = document.createElement('p');
+            noResultMessage.textContent = "Aucun résultat trouvé";
+            noResultMessage.className = "no-result-message";
+            namelist.appendChild(noResultMessage);
+        } else if (!matchFound && noResultMessage) {
+            noResultMessage.style.display = "block";
+        }
+        else {
+            // Remove "No result found" message if matches are found
+            var noResultMessage = namelist.querySelector('.no-result-message');
+            if (noResultMessage) {
+                noResultMessage.remove();
             }
         }
     }
