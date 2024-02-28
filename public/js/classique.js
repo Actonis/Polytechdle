@@ -1,8 +1,7 @@
 window.onload = function () {
 
     var namelist= document.getElementById("name-list");
-
-    fetch('http://localhost/Projet/Polytechdle/php/verify.php', {
+    fetch('/getNames', {
             method: 'GET',
         })
         .then(response => response.json())
@@ -72,7 +71,7 @@ window.onload = function () {
         formData.append('nom', input.value);
 
         // Make a POST request using Fetch
-        fetch('http://localhost/Projet/Polytechdle/php/verify.php', {
+        fetch('/verify', {
             method: 'POST',
             body: formData,
         })
