@@ -64,16 +64,17 @@ window.onload = function () {
     
     
     function verify()
-    {
-        //Code à faire qui appelle le php pour la vérification du guess.
-        var formData = new FormData();
-        //A récuperer ce qu'on écrit pour l'envoyer dans le php. Ici c'est fait automatiquement
-        formData.append('nom', input.value);
+    {   
+        // Get the value of the input field
+        const data = { nom: input.value };
 
         // Make a POST request using Fetch
         fetch('/verify', {
             method: 'POST',
-            body: formData,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
         })
         .then(response => response.json())
         .then(data => {
