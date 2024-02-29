@@ -2,9 +2,14 @@ const express = require('express');
 const router = express.Router();
 const db = require('./db.js'); // Import your database connection
 
+// Middleware to parse JSON bodies
+router.use(express.json());
+
 // Route for verifying guesses
 router.post('/', (req, res) => {
     const guess = req.body.nom; // Assuming 'nom' is the key sent in the request body
+    console.log('Received guess:', req.body.nom);
+    
 
     db.query('SELECT * FROM Professeur WHERE nom = ?', [guess], (err, results) => {
         if (err) {
