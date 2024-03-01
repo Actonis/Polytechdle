@@ -1,15 +1,7 @@
-/* général */
-
 body
 {
-    background-image: url('../images/fond_popo.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
+    background-color: #3d3d3d;
     justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.76); /* Couleur blanche avec une transparence de 50% */
-    background-blend-mode: overlay;
     padding: 20px; /* Optional: Add some padding around the containers */
     color: white;
 }
@@ -28,11 +20,7 @@ h1
     align-items: center;
   }
 
-  /*header*/
 
-
-
-  /*Boutons*/
 
 .boutons {
   appearance: button;
@@ -61,7 +49,6 @@ h1
   -webkit-user-select: none;
   touch-action: manipulation;
   width: 20%;
-  align-items: center; /* Centre verticalement */
 }
 
 .boutons:hover {
@@ -78,18 +65,42 @@ h1
   box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
 }
 
-/*image titre*/
-
-.container {
+.guess-field {
   display: flex;
-  flex-direction: row;
-  justify-content: center; /* Centre horizontalement */
-  height: 100px; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
 
-.img-title {
-  display: block; /* Rend l'élément traitable comme un bloc */
-  margin-left: auto; /* Centre horizontalement l'élément */
-  margin-right: auto;
+/* Initially hide the names list */
+#name-list {
+  display: none;
+  background-color: white;
+  color: black;
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 10px 30px;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  overflow-y: auto; /* Enable vertical scrolling */
+  position: absolute;
+  z-index: 1;
 }
 
+/* Center the names list horizontally */
+#name-list {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Style for individual name entries */
+#name-list p {
+  margin: 5px;
+}
+
+/* Show the names list only when text is typed in the input field */
+#guess:focus + #name-list {
+  display: block;
+}
