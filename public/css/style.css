@@ -112,12 +112,18 @@ h1:hover::after{
 
 
 
-.guess-field {
+.container-guess-field {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+
+.guess-field {
+  gap: 10px;
 }
 
 /* Initially hide the names list */
@@ -132,8 +138,7 @@ h1:hover::after{
   border-radius: 10px 30px;
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   overflow-y: auto; /* Enable vertical scrolling */
-  position: absolute;
-  z-index: 1;
+  z-index: 100;
 }
 
 /* Center the names list horizontally */
@@ -150,4 +155,67 @@ h1:hover::after{
 /* Show the names list only when text is typed in the input field */
 #guess:focus + #name-list {
   display: block;
+}
+
+.container-clue {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.categories, .clues-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.category {
+  margin: 0 10px; /* Add spacing between the categories */
+  position: relative;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  width: 80px; /* Set a fixed width */
+  height: 50px; /* Set a fixed height */
+  padding: 8px; /* Add padding */
+  border-radius: 5px; /* Add rounded corners */
+  text-align: center; /* Center the text horizontally */
+}
+
+.category::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; /* Adjust the thickness of the line */
+  left: 0;
+  width: 100%;
+  height: 2px; /* Adjust the height of the line */
+  background-color: rgb(255, 255, 255); /* Change the color of the line */
+}
+
+.rectangle {
+  margin: 0 10px; /* Add spacing between the categories */
+  position: relative;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  width: 80px; /* Set a fixed width */
+  height: 50px; /* Set a fixed height */
+  padding: 8px; /* Add padding */
+  border-radius: 5px; /* Add rounded corners */
+  text-align: center; /* Center the text horizontally */
+  background-color: #bdbdbd; /* Set the background color of the rectangle */
+  border-radius: 5px; /* Add rounded corners to the rectangle */
+  animation:appears 1s forwards;
+  opacity: 0;
+}
+
+@keyframes appears {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

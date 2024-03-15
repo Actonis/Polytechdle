@@ -10,12 +10,26 @@
 <body>
     <h1>Mode de jeu Classique</h1>
 
-    <div class="guess-field">
-        <input list="text" id="guess" autocomplete="off">
+    <div class="container-guess-field">
+        <div class="guess-field">
+            <input list="text" id="guess" autocomplete="off">
+            <button id="submit">Valider</button>
+        </div>
+
+        <div class="name-list" id="name-list">
+        </div>
     </div>
 
+    <div class="container-clue" id="container-clue">
+        <div class="categories">
+            <span class="category">Nom</span>
+            <span class="category">Genre</span>
+            <span class="category">Spécialité</span>
+            <span class="category">Peip ou non</span>
+            <span class="category">Ville d'origine</span>
+        </div>
 
-    <div class="name-list" id="name-list">
+        <!-- clues will be printed here with js-->
     </div>
 
 </body>

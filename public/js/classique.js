@@ -1,6 +1,12 @@
 window.onload = function () {
 
     var namelist= document.getElementById("name-list");
+    var sumbitButton = document.getElementById("submit");
+
+    sumbitButton.addEventListener("click", function() {
+        verify();
+    });
+
     fetch('/getNames', {
             method: 'GET',
         })
@@ -25,7 +31,6 @@ window.onload = function () {
             });
         }
 
-
     var input = document.getElementById("guess");
 
     input.addEventListener("keydown", function (e) {
@@ -49,6 +54,14 @@ window.onload = function () {
         }
     });
 
+    namelist.addEventListener("click", function(e) {
+        if (e.target.tagName === "P") {
+            input.value = e.target.textContent;
+            //verify();
+            namelist.style.display = "none";
+        }
+    });
+
     input.addEventListener("input", function() {
         var typedText = input.value.trim();
         
@@ -68,23 +81,47 @@ window.onload = function () {
         // Get the value of the input field
         const data = { nom: input.value };
 
-        // Make a POST request using Fetch
-        fetch('/verify', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Server response:', data);  
+        if (data.nom === "") {
+            return;
+        }
+        else {
+            // Make a POST request using Fetch
+            fetch('/verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Server response:', data);  
 
-            input.value = '';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+                printClues();
+
+                input.value = '';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    }
+
+    function printClues() {
+        var cluesContainer = document.createElement('div');
+        cluesContainer.className = "clues-container";
+        cluesContainer.classList.add('categories'); // Add a class for styling
+
+        var parentContainer= document.getElementById("container-clue");
+        parentContainer.appendChild(cluesContainer);
+
+        // Create 6 new rectangles
+        for (let i = 0; i < 5; i++) {
+            const rectangle = document.createElement('div');
+            rectangle.classList.add('rectangle'); // Add a class for styling
+            rectangle.style.animationDelay = (i * 0.8) + "s"; // Stagger animation delays
+            cluesContainer.appendChild(rectangle); // Append the rectangle to the container
+        }
     }
 
     function search() {
