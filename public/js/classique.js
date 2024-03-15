@@ -97,11 +97,30 @@ window.onload = function () {
             .then(data => {
                 console.log('Server response:', data);  
 
+                printClues();
+
                 input.value = '';
             })
             .catch(error => {
                 console.error('Error:', error);
             });
+        }
+    }
+
+    function printClues() {
+        var cluesContainer = document.createElement('div');
+        cluesContainer.className = "clues-container";
+        cluesContainer.classList.add('categories'); // Add a class for styling
+
+        var parentContainer= document.getElementById("container-clue");
+        parentContainer.appendChild(cluesContainer);
+
+        // Create 6 new rectangles
+        for (let i = 0; i < 5; i++) {
+            const rectangle = document.createElement('div');
+            rectangle.classList.add('rectangle'); // Add a class for styling
+            rectangle.style.animationDelay = (i * 0.8) + "s"; // Stagger animation delays
+            cluesContainer.appendChild(rectangle); // Append the rectangle to the container
         }
     }
 

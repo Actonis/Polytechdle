@@ -94,14 +94,31 @@ h1
   z-index: 100;
 }
 
+/* Center the names list horizontally */
+#name-list {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Style for individual name entries */
+#name-list p {
+  margin: 5px;
+}
+
+/* Show the names list only when text is typed in the input field */
+#guess:focus + #name-list {
+  display: block;
+}
+
 .container-clue {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
 }
 
-.categories {
+.categories, .clues-container {
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
@@ -120,7 +137,6 @@ h1
   text-align: center; /* Center the text horizontally */
 }
 
-
 .category::after {
   content: '';
   position: absolute;
@@ -131,20 +147,28 @@ h1
   background-color: rgb(255, 255, 255); /* Change the color of the line */
 }
 
-
-
-/* Center the names list horizontally */
-#name-list {
-  left: 50%;
-  transform: translateX(-50%);
+.rectangle {
+  margin: 0 10px; /* Add spacing between the categories */
+  position: relative;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  width: 80px; /* Set a fixed width */
+  height: 50px; /* Set a fixed height */
+  padding: 8px; /* Add padding */
+  border-radius: 5px; /* Add rounded corners */
+  text-align: center; /* Center the text horizontally */
+  background-color: #bdbdbd; /* Set the background color of the rectangle */
+  border-radius: 5px; /* Add rounded corners to the rectangle */
+  animation:appears 1s forwards;
+  opacity: 0;
 }
 
-/* Style for individual name entries */
-#name-list p {
-  margin: 5px;
-}
-
-/* Show the names list only when text is typed in the input field */
-#guess:focus + #name-list {
-  display: block;
+@keyframes appears {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
