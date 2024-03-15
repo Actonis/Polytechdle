@@ -1,16 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body
 {
-    background-color: #3d3d3d;
-    justify-content: space-between;
+    height: 100vh;
+    width: 100%;
+    background: radial-gradient(#480d35 ,#17151d);
+    display: flex;
+    flex-direction: column;
+    place-items: center;  
+    justify-content: center;
     padding: 20px; /* Optional: Add some padding around the containers */
-    color: white;
+    color : white;
 }
+
+/* SEXION TITRES */
 
 h1
 {
-    padding-top: 30px;
-    text-align: center;
-    font-weight: bold;
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    color: #f6d8d5;
+    background-image: radial-gradient( #f6d8d5);
+    font-size: 150px;
+}
+
+h1::before{
+  content: attr(data-text);
+  position: absolute;
+  top: 0em;
+  left: 0em;
+  color: #313f97;
+  z-index: -1;
+  transition: 0.2s;
+}
+h1:hover::before{
+  top: 0.04em;
+  left: 0.04em;
+}
+h1::after{
+  content: attr(data-text);
+  position: absolute;
+  color: transparent;
+  top: 0em;
+  left: 0em;
+  background-image: radial-gradient(rgba(236, 34, 37, 0.5) 0.0125em, transparent 0.0125em);
+  background-size: 8px 8px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-stroke: 1px #ec2225;
+  transition: 0.2s;
+}
+h1:hover::after{
+  top: -0.04em;
+  left: -0.04em;
 }
 
 .center {
@@ -22,48 +70,47 @@ h1
 
 
 
-.boutons {
-  appearance: button;
-  backface-visibility: hidden;
-  background-color: #405cf5;
-  border-radius: 6px;
-  border-width: 0;
-  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
-  font-size: 100%;
-  height: 44px;
-  line-height: 1.15;
-  margin: 12px 0 0;
-  outline: none;
-  overflow: hidden;
-  padding: 0 25px;
-  position: relative;
-  text-align: center;
-  text-transform: none;
-  transform: translateZ(0);
-  transition: all .2s,box-shadow .08s ease-in;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  width: 20%;
+/* SEXION BOUTONS */
+
+.text{
+  text-align:center;
+  color:#f6d8b5;
+  font-size:50px;
+  border:none;
+  font-family:arial;
+  padding:5px 20px;
+  margin:22px auto;
+  display:block;
+  background-color:#480d35;
+  cursor:pointer;
+  position:relative;
+  z-index:20;
+  transition:all .5s ease-in-out;
+  overflow:hidden;
+  border-radius:30px /30px;
+  border:2px solid #f6d8b5
 }
 
-.boutons:hover {
-  background-color: #4d6bf5;
-  border : 2px solid transparent;
-  transform: scale(1.05);
+.text:before{
+  content:"";
+  transition:all .5s ease-in-out;
+  display:inline-block;
+  padding:5px;
+  position:absolute;
+  margin-left:137px;
+  margin-top:26px
 }
 
-.boutons:disabled {
-  cursor: default;
+.text:hover:before{
+  transform:scale(40,40) rotate(90deg);
+  border:2px solid #480d35
 }
 
-.boutons:focus {
-  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+.text:hover{
+  background-color:transparent
 }
+
+
 
 .container-guess-field {
   display: flex;
