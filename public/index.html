@@ -16,5 +16,16 @@
         <button class="boutons" onclick="window.location.href = '/portfolio.html';">A faire</button>
         <button class="boutons" onclick="window.location.href = '/contact.html';">A faire</button>
     </div>
+    <script>
+        fetch('/checkLastLaunch')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('La requête a échoué');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la requête :', error);
+            });
+    </script>
 </body>
 </html>

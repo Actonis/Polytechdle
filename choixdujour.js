@@ -1,7 +1,8 @@
 const fs = require('fs');
+const conn = require('./db');
 
 const lastLaunchFilePath = 'lastLaunch.json';
-const limitDifference = 24 * 60 * 60 * 1000; // 24 heures en millisecondes
+const limitDifference = 24 * 60 * 60 * 1000;
 
 function getLastLaunchDate() {
   try {
@@ -9,7 +10,6 @@ function getLastLaunchDate() {
       const data = fs.readFileSync(lastLaunchFilePath, 'utf8');
       return new Date(JSON.parse(data).lastLaunch);
     } else {
-      console.log('Le fichier lastLaunch.json n\'existe pas. Création du fichier...');
       saveLastLaunchDate();
       return new Date();
     }
@@ -40,12 +40,25 @@ function checkLastLaunch() {
   const difference = currentDate - lastLaunchDate.getTime();
 
   if (difference > limitDifference) {
-    console.log('La dernière date de lancement dépasse la limite. Exécution du script...');
-    // Exécutez votre script ici
-  } else {
-    console.log('La dernière date de lancement est dans la limite.');
+    saveLastLaunchDate();
+    conn.query('SELECT * FROM professeur ORDER BY RAND() LIMIT 1;', (error, results) => {
+      if (error) {
+        console.error('Erreur lors de la récupération des professeurs :', error);
+        return;
+      }
+      results.forEach((professeur) => {
+        // Insérer le résultat dans la table choix_du_jour
+        conn.query('INSERT INTO choixdujour (nom, prenom) VALUES (?, ?)', [professeur.nom, professeur.prenom], (insertError, insertResults) => {
+          if (insertError) {
+            console.error('Erreur lors de l\'insertion dans la table choix_du_jour :', insertError);
+            return;
+          }
+        });
+      });
+    });
+    conn.end();
   }
 }
 
 checkLastLaunch();
-saveLastLaunchDate();
+module.exports = { checkLastLaunch };
