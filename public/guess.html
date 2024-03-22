@@ -8,12 +8,12 @@
     
 </head>
 <body>
-    <h1>Mode de jeu Classique</h1>
+    <h2>Mode de jeu Classique</h2>
 
-    <div class="container-guess-field">
+    <div id="container-guess-field" class="container-guess-field">
         <div class="guess-field">
-            <input list="text" id="guess" autocomplete="off">
-            <button id="submit">Valider</button>
+            <input class="guess-input" list="text" id="guess" autocomplete="off">
+            <button class='submit-button' id="submit">Valider</button>
         </div>
 
         <div class="name-list" id="name-list">
@@ -23,6 +23,7 @@
     <div class="container-clue" id="container-clue">
         <div class="categories">
             <span class="category">Nom</span>
+            <span class="category">Age</span>
             <span class="category">Genre</span>
             <span class="category">Spécialité</span>
             <span class="category">Peip ou non</span>
@@ -30,6 +31,11 @@
         </div>
 
         <!-- clues will be printed here with js-->
+    </div>
+
+
+    <div class="modal-end" id="modal-end">
+        <span class="congrates">Bien joué vous avez trouvé !</span>
     </div>
 
 </body>

@@ -61,6 +61,15 @@ h1:hover::after{
   left: -0.04em;
 }
 
+h2 {
+  position: absolute;
+  top: 1.5em;
+  font-family: "Poppins", sans-serif;
+  color: #f6d8d5;
+  background-image: radial-gradient( #f6d8d5);
+  font-size: 70px;
+}
+
 .center {
     display: flex;
     flex-direction: column;
@@ -125,6 +134,34 @@ h1:hover::after{
 .guess-field {
   gap: 10px;
 }
+
+.guess-input {
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #a54486;
+	background: rgba(#a54486, .2);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+}
+
+.submit-button {
+  display: inline-block;
+  width: 95px;
+  height: 40px;
+  border-radius: 20%;
+  background-color: #691c50;
+  border-color: #691c50;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0%;
+}
+.submit-button:hover {
+  background-color: #832966;
+}
+
 
 /* Initially hide the names list */
 #name-list {
@@ -210,6 +247,12 @@ h1:hover::after{
   animation:appears 1s forwards;
   opacity: 0;
 }
+.vrai {
+  background-color: green;
+}
+.faux {
+  background-color: red;
+}
 
 @keyframes appears {
   0% {
@@ -218,4 +261,20 @@ h1:hover::after{
   100% {
     opacity: 1;
   }
+}
+
+.modal-end {
+  display : none;
+  text-align:center;
+  color:#f6d8b5;
+  font-size:50px;
+  border:none;
+  font-family:arial;
+  padding:5px 20px;
+  margin:22px auto;
+  background-color:#480d35;
+  z-index:20;
+  transition:all .5s ease-in-out;
+  border-radius:30px /30px;
+  border:2px solid #f6d8b5
 }
