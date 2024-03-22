@@ -19,11 +19,40 @@ router.post('/', (req, res) => {
         }
 
         if (results.length > 0) {
-            res.json({ response: 'Bien joué' });
+            //results renvoie un Array avec chaque element contenant toutes les informations de chaque ligne que renvoie la requête SQL
+            //verificationResponse(results); 
+
+
+            //Deviendra inutile quand la fonction de vérification sera implémentée
+            //voici la forme de ce que j'envoie au client
+            // name = nom du critère (pour le moment je m'en sers pas)
+            // value = texte à afficher sur la page = ce que renvoie la requête sql
+            // correct = si le critère est vrai ou non
+            const criterias = [
+                { name: 'criteria1', value: "nom", correct: true },
+                { name: 'criteria2', value: "prenom", correct: true },
+                { name: 'criteria3', value: "age", correct: true },
+                { name: 'criteria4', value: "test", correct: true },
+                { name: 'criteria5', value: "test1", correct: false },
+                { name: 'criteria6', value: "departement", correct: true }
+            ]; 
+            
+
+            res.json({ criterias : criterias });
         } else {
+            // J'ai mis ca au cas ou mais normalement ca devrait jamais arriver
             res.json({ response: 'Mauvais' });
         }
     });
 });
+
+function verificationResponse(results) {
+    //Fonction pour comparer le résultat de la requête avec la solution du jour
+    //Il faudra comparer chaque critère avec celui de la solution du jour
+
+
+    //Retourne le tableau contenant la valeur du critère et sa véracité
+    return criterias;
+}
 
 module.exports = router;

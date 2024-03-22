@@ -96,8 +96,7 @@ window.onload = function () {
             .then(response => response.json())
             .then(data => {
                 console.log('Server response:', data);  
-
-                printClues();
+                printClues(data);
 
                 input.value = '';
             })
@@ -107,20 +106,37 @@ window.onload = function () {
         }
     }
 
-    function printClues() {
+    function printClues(clues) {
         var cluesContainer = document.createElement('div');
         cluesContainer.className = "clues-container";
+        cluesContainer.id = "clues-container"
         cluesContainer.classList.add('categories'); // Add a class for styling
 
         var parentContainer= document.getElementById("container-clue");
         parentContainer.appendChild(cluesContainer);
 
-        // Create 6 new rectangles
-        for (let i = 0; i < 5; i++) {
+        var i = 0;
+        clues.criterias.forEach(criteria => {
             const rectangle = document.createElement('div');
+            rectangle.textContent=criteria.value
+
+            if(criteria.correct == true)
+            {
+                rectangle.classList.add('vrai');
+            }
+            else
+            {
+                rectangle.classList.add('faux');
+            }
+
             rectangle.classList.add('rectangle'); // Add a class for styling
             rectangle.style.animationDelay = (i * 0.8) + "s"; // Stagger animation delays
             cluesContainer.appendChild(rectangle); // Append the rectangle to the container
+            i++;
+        })
+
+        if(endOfTheGame()){
+            endingTheGame();
         }
     }
 
@@ -157,6 +173,35 @@ window.onload = function () {
                 noResultMessage.remove();
             }
         }
+    }
+
+    function endOfTheGame() {
+        responses = document.getElementById("clues-container")
+        var end = true;
+        for(i=0; i<responses.children.length; i++){
+            if(responses.children[i].classList.contains('faux'))
+            {
+                end = false
+            }
+        }
+        if(end)
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
+
+    function endingTheGame() {
+        congrateMessage = document.getElementById('modal-end')
+
+        congrateMessage.style.display = 'block';
+
+        console.log(document.getElementById('container-guess-field'))
+
+        document.getElementById('container-guess-field').style.display = 'none';
     }
 }
 
