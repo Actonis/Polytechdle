@@ -135,6 +135,34 @@ h2 {
   gap: 10px;
 }
 
+.guess-input {
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #a54486;
+	background: rgba(#a54486, .2);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+}
+
+.submit-button {
+  display: inline-block;
+  width: 95px;
+  height: 40px;
+  border-radius: 20%;
+  background-color: #691c50;
+  border-color: #691c50;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0%;
+}
+.submit-button:hover {
+  background-color: #832966;
+}
+
+
 /* Initially hide the names list */
 #name-list {
   display: none;
