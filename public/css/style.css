@@ -324,9 +324,9 @@ h1:hover::after{
 }
 
 .modal .message a:hover {
-  /* $c: lighten(#28afe6, 10%); */
-  /* color: $c; */
-  /* border-bottom: 1px dotted $c; */
+  color: #4fbce9;
+  border-bottom: 1px dotted #4fbce9;
+  filter: brightness(110%);
 }
 
 footer {
