@@ -13,6 +13,7 @@ window.onload = function () {
         .then(response => response.json())
         .then(data => { 
             populateDatalist(data.names);
+            console.log('Server response:', data);
         })
         .catch(error => {
             console.error('Error:', error);
