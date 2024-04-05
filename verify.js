@@ -60,7 +60,6 @@ function verificationResponse(results) {
 
     results.forEach(row => {
         Object.keys(row).forEach(key => {
-            console.log(results);
             if (row[key] === reponseObject[key]) {
                 correction.push("true");
             } 
@@ -76,8 +75,15 @@ function verificationResponse(results) {
         });
     });
 
-    //Deviendra inutile quand la fonction de vérification sera implémentée
-    //voici la forme de ce que j'envoie au client
+    var SemestreStage = results.map(row => row.etudes_etranger)
+    var pays_etranger = results.map(row => row.pays_etranger)
+    if(SemestreStage== "")
+    {
+        SemestreStage = "Pas encore fait"
+        pays_etranger = " / "
+    }
+
+
     // name = nom du critère (pour le moment je m'en sers pas)
     // value = texte à afficher sur la page = ce que renvoie la requête sql
     // correct = si le critère est vrai ou non
@@ -88,7 +94,9 @@ function verificationResponse(results) {
         { name: 'Specialite', value: results.map(row => row.specialite), correct: correction[3] },
         { name: 'PeipOuNon', value: results.map(row => row.peip), correct: correction[4] },
         { name: 'CouleurCheveux', value: results.map(row => row.couleur_cheveux), correct: correction[5] },
-        { name: 'SemestreStage', value: results.map(row => row.etudes_etranger), correct: correction[6] }
+        { name: 'SemestreStage', value: SemestreStage, correct: correction[6] },
+        { name: 'Pays', value: pays_etranger, correct: correction[7] },
+        { name: 'Annee', value: results.map(row => row.annee_etude), correct: correction[8] }
     ]; 
 
     //Retourne le tableau contenant la valeur du critère et sa véracité
