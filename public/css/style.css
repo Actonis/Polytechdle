@@ -29,7 +29,7 @@ body
   padding-bottom: 20px;
 }
 
-/* SEXION TITRES */
+/* SECTION TITRES */
 
 h1
 {
@@ -87,9 +87,11 @@ h2 {
     align-items: center;
   }
 
+.clickable {
+  cursor: pointer;
+}
 
-
-/* SEXION BOUTONS */
+/* SECTION BOUTONS */
 
 .text{
   text-align:center;
@@ -440,8 +442,8 @@ footer .disclaimer {
   display: flex; /* Use flexbox */
   justify-content: center; /* Center the text horizontally */
   align-items: center; /* Center the text vertically */
-  width: 80px; /* Set a fixed width */
-  height: 50px; /* Set a fixed height */
+  width: 100px; /* Set a fixed width */
+  height: 70px; /* Set a fixed height */
   padding: 8px; /* Add padding */
   border-radius: 5px; /* Add rounded corners */
   text-align: center; /* Center the text horizontally */
@@ -463,8 +465,8 @@ footer .disclaimer {
   display: flex; /* Use flexbox */
   justify-content: center; /* Center the text horizontally */
   align-items: center; /* Center the text vertically */
-  width: 80px; /* Set a fixed width */
-  height: 50px; /* Set a fixed height */
+  width: 100px; /* Set a fixed width */
+  height: 70px; /* Set a fixed height */
   padding: 8px; /* Add padding */
   border-radius: 5px; /* Add rounded corners */
   text-align: center; /* Center the text horizontally */
@@ -474,10 +476,13 @@ footer .disclaimer {
   opacity: 0;
 }
 .vrai {
-  background-color: green;
+  background-color: rgb(98, 201, 98);
 }
 .faux {
-  background-color: red;
+  background-color: rgb(238, 79, 79);
+}
+.presque {
+  background-color: rgb(253, 171, 76);
 }
 
 @keyframes appears {

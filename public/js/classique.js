@@ -13,7 +13,6 @@ window.onload = function () {
         .then(response => response.json())
         .then(data => { 
             populateDatalist(data.names);
-            console.log('Server response:', data);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -27,6 +26,7 @@ window.onload = function () {
             // Populate datalist with names from the database
             names.forEach(function(name) {
                 var p = document.createElement('p');
+                p.classList.add('clickable');
                 p.textContent = name;
                 namelist.appendChild(p);
             });
@@ -96,7 +96,6 @@ window.onload = function () {
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Server response:', data);  
                 printClues(data);
 
                 input.value = '';
@@ -121,13 +120,17 @@ window.onload = function () {
             const rectangle = document.createElement('div');
             rectangle.textContent=criteria.value
 
-            if(criteria.correct == true)
+            if(criteria.correct == "true")
             {
                 rectangle.classList.add('vrai');
             }
-            else
+            else if(criteria.correct == "false")
             {
                 rectangle.classList.add('faux');
+            }
+            else if(criteria.correct == "nearly")
+            {
+                rectangle.classList.add('presque');
             }
 
             rectangle.classList.add('rectangle'); // Add a class for styling
