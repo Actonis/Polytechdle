@@ -26,6 +26,7 @@ window.onload = function () {
             // Populate datalist with names from the database
             names.forEach(function(name) {
                 var p = document.createElement('p');
+                p.classList.add('clickable');
                 p.textContent = name;
                 namelist.appendChild(p);
             });
@@ -95,7 +96,6 @@ window.onload = function () {
             })
             .then(response => response.json())
             .then(data => {
-                console.log('Server response:', data);  
                 printClues(data);
 
                 input.value = '';
@@ -120,24 +120,31 @@ window.onload = function () {
             const rectangle = document.createElement('div');
             rectangle.textContent=criteria.value
 
-            if(criteria.correct == true)
+            if(criteria.correct == "true")
             {
                 rectangle.classList.add('vrai');
             }
-            else
+            else if(criteria.correct == "false")
             {
                 rectangle.classList.add('faux');
             }
+            else if(criteria.correct == "nearly")
+            {
+                rectangle.classList.add('presque');
+            }
 
             rectangle.classList.add('rectangle'); // Add a class for styling
-            rectangle.style.animationDelay = (i * 0.8) + "s"; // Stagger animation delays
+            rectangle.style.animationDelay = (i * 0.4) + "s"; // Stagger animation delays
             cluesContainer.appendChild(rectangle); // Append the rectangle to the container
             i++;
         })
 
-        if(endOfTheGame()){
-            endingTheGame();
-        }
+        // Check end of game after delay
+        setTimeout(function() {
+            if (endOfTheGame(cluesContainer)) {
+                endingTheGame();
+            }
+        }, i * 0.4 * 1000); // Convert seconds to milliseconds
     }
 
     function search() {
@@ -175,8 +182,8 @@ window.onload = function () {
         }
     }
 
-    function endOfTheGame() {
-        responses = document.getElementById("clues-container")
+    function endOfTheGame(responses) {
+        //responses = document.querySelectorAll("#clues-container")
         var end = true;
         for(i=0; i<responses.children.length; i++){
             if(responses.children[i].classList.contains('faux'))
@@ -184,6 +191,7 @@ window.onload = function () {
                 end = false
             }
         }
+
         if(end)
         {
             return true

@@ -6,9 +6,12 @@
   box-sizing: border-box;
 }
 
+html, body {
+	height: 100%;
+}
+
 body
 {
-    height: 100vh;
     width: 100%;
     background: radial-gradient(#480d35 ,#17151d);
     display: flex;
@@ -19,7 +22,14 @@ body
     color : white;
 }
 
-/* SEXION TITRES */
+.wrap {
+  position: relative;
+  height: 100%;
+  min-height: 500px;
+  padding-bottom: 20px;
+}
+
+/* SECTION TITRES */
 
 h1
 {
@@ -77,9 +87,11 @@ h2 {
     align-items: center;
   }
 
+.clickable {
+  cursor: pointer;
+}
 
-
-/* SEXION BOUTONS */
+/* SECTION BOUTONS */
 
 .text{
   text-align:center;
@@ -194,6 +206,222 @@ h2 {
   display: block;
 }
 
+
+
+
+/* MEMORY */
+
+.game {
+  transform-style: preserve-3d;
+  perspective: 500px;
+  min-height: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Centrer les cartes horizontalement */
+  align-content: flex-start;
+  align-items: center; /* Centrer les cartes verticalement (si nécessaire) */
+  gap: 10px; /* Cela crée un espace entre les cartes sans avoir à utiliser de margin */
+}
+
+/* Media queries pour ajuster le layout en fonction de la largeur de l'écran */
+@media (min-width: 1200px) {
+  /* Pour les grands écrans, par exemple, 6 cartes par ligne */
+  .game {
+    max-width: calc(150px * 6 + 10px * 5);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  /* Pour les écrans moyens, par exemple, 4 cartes par ligne */
+  .game {
+    max-width: calc(150px * 4 + 10px * 3);
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  /* Pour les petits écrans, par exemple, 3 cartes par ligne */
+  .game {
+    max-width: calc(150px * 3 + 10px * 2);
+  }
+}
+
+@media (max-width: 600px) {
+  .game {
+    justify-content: space-around;
+  }
+  .card {
+    width: calc((100vw - 40px) / 4); /* Fewer columns on smaller screens */
+    height: calc((100vw - 40px) / 4);
+  }
+  .front, .back {
+    padding: 5px;
+  }
+  .modal .winner {
+    font-size: 60px;
+  }
+  .back {
+    padding: 10px;
+  }
+  footer .disclaimer {
+    font-size: 8px;
+  }
+}
+
+@keyframes matchAnim {
+  0% {
+    background: #bcffcc;
+  }
+  100% {
+    background: white;
+  }
+}
+
+.card {
+  float: left;
+  width: 140px;
+  height: 150px;
+  max-width: 150px; /* Maximum size of the cards */
+  min-width: 100px; /* Minimum size of the cards */
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+  display: block;
+  perspective: 500px;
+  position: relative;
+  cursor: pointer;
+  z-index: 50;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.card .inside {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-style: preserve-3d;
+  transition: .4s ease-in-out;
+  background: white;
+}
+
+.card .inside.picked, .card .inside.matched {
+  transform: rotateY(180deg);
+}
+
+.card .inside.matched {
+  animation: 1s matchAnim ease-in-out;
+  animation-delay: .4s;
+}
+
+.card .front, .card .back {
+  border: 1px solid black;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.card .front img, .card .back img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  max-height: 100%;
+}
+
+.card .front {
+  transform: rotateY(-180deg);
+}
+
+.card .back {
+  transform: rotateX(0); /* fix firefox backface-visibility. */
+}
+
+.modal-overlay {
+  display: none;
+  background: rgba(0,0,0,.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal {
+  display: none;
+  position: relative;
+  width: 500px;
+  height: 400px;
+  max-height: 90%;
+  max-width: 90%;
+  min-height: 380px;
+  margin: 0 auto;
+  background: white;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 30px 10px;
+}
+
+.modal .winner {
+  font-size: 80px;
+  text-align: center;
+  font-family: "Anton", sans-serif;
+  color: #4d4d4d;
+  text-shadow: 0px 3px 0 black;
+}
+
+.modal .restart {
+  font-family: "Anton", sans-serif;
+  margin: 30px auto;
+  padding: 20px 30px;
+  display: block;
+  font-size: 30px;
+  border: none;
+  background: #4d4d4d;
+  background: linear-gradient(#4d4d4d, #222);
+  border: 1px solid #222;
+  border-radius: 5px;
+  color: white;
+  text-shadow: 0px 1px 0 black;
+  cursor: pointer;
+}
+
+.modal .restart:hover {
+  background: linear-gradient(#222, black);
+}
+
+.modal .message {
+  text-align: center;
+}
+
+.modal .message a {
+  text-decoration: none;
+  color: #28afe6;
+  font-weight: bold;
+}
+
+.modal .message a:hover {
+  color: #4fbce9;
+  border-bottom: 1px dotted #4fbce9;
+  filter: brightness(110%);
+}
+
+footer {
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+footer .disclaimer {
+  line-height: 20px;
+  font-size: 12px;
+  color: #727272;
+  text-align: center;
+}
+
 .container-clue {
   display: flex;
   flex-direction: column;
@@ -214,8 +442,8 @@ h2 {
   display: flex; /* Use flexbox */
   justify-content: center; /* Center the text horizontally */
   align-items: center; /* Center the text vertically */
-  width: 80px; /* Set a fixed width */
-  height: 50px; /* Set a fixed height */
+  width: 100px; /* Set a fixed width */
+  height: 70px; /* Set a fixed height */
   padding: 8px; /* Add padding */
   border-radius: 5px; /* Add rounded corners */
   text-align: center; /* Center the text horizontally */
@@ -237,8 +465,8 @@ h2 {
   display: flex; /* Use flexbox */
   justify-content: center; /* Center the text horizontally */
   align-items: center; /* Center the text vertically */
-  width: 80px; /* Set a fixed width */
-  height: 50px; /* Set a fixed height */
+  width: 100px; /* Set a fixed width */
+  height: 70px; /* Set a fixed height */
   padding: 8px; /* Add padding */
   border-radius: 5px; /* Add rounded corners */
   text-align: center; /* Center the text horizontally */
@@ -248,10 +476,13 @@ h2 {
   opacity: 0;
 }
 .vrai {
-  background-color: green;
+  background-color: rgb(98, 201, 98);
 }
 .faux {
-  background-color: red;
+  background-color: rgb(238, 79, 79);
+}
+.presque {
+  background-color: rgb(253, 171, 76);
 }
 
 @keyframes appears {
