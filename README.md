@@ -9,7 +9,7 @@ projet en HTML5 et par la suite convaincre l’auditoire de l’intérêt de not
 
 Présentation du projet :
 Pour notre projet, nous avons souhaité nous inspirer de certains jeux en ligne auxquels nous jouons.
-Prenons l’exemple de « Valodle » (https://valodle.eu/) :
+Prenons l’exemple de « Valodle » ( https://valodle.eu/ ) :
 
 Le but du jeu est assez simple : trouver le « Personnage du jour ». Pour cela, vous proposez
 initialement un nom de personnage. En réponse, l’application indique si différents critères (tels que
