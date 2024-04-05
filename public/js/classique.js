@@ -138,7 +138,6 @@ window.onload = function () {
             cluesContainer.appendChild(rectangle); // Append the rectangle to the container
             i++;
         })
-
         // Check end of game after delay
         setTimeout(function() {
             if (endOfTheGame(cluesContainer)) {
@@ -207,9 +206,8 @@ window.onload = function () {
 
         congrateMessage.style.display = 'block';
 
-        console.log(document.getElementById('container-guess-field'))
-
         document.getElementById('container-guess-field').style.display = 'none';
+
     }
 }
 
