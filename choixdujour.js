@@ -36,19 +36,23 @@ function checkLastLaunch() {
     return;
   }
 
-  const currentDate = Date.now();
-  const difference = currentDate - lastLaunchDate.getTime();
-
-  if (difference > limitDifference) {
+  const currentDate = new Date();
+  
+  // Comparaison des parties de la date (année, mois et jour)
+  if (
+    lastLaunchDate.getFullYear() !== currentDate.getFullYear() ||
+    lastLaunchDate.getMonth() !== currentDate.getMonth() ||
+    lastLaunchDate.getDate() !== currentDate.getDate()
+  ) {
     saveLastLaunchDate();
-    conn.query('SELECT * FROM professeur ORDER BY RAND() LIMIT 1;', (error, results) => {
+    conn.query('SELECT * FROM etudiants ORDER BY RAND() LIMIT 1;', (error, results) => {
       if (error) {
         console.error('Erreur lors de la récupération des professeurs :', error);
         return;
       }
-      results.forEach((professeur) => {
+      results.forEach((etudiants) => {
         // Insérer le résultat dans la table choix_du_jour
-        conn.query('INSERT INTO choixdujour (nom, prenom) VALUES (?, ?)', [professeur.nom, professeur.prenom], (insertError, insertResults) => {
+        conn.query('INSERT INTO choixdujour (nom) VALUES (?)', [etudiants.eleve], (insertError, insertResults) => {
           if (insertError) {
             console.error('Erreur lors de l\'insertion dans la table choix_du_jour :', insertError);
             return;
@@ -59,6 +63,7 @@ function checkLastLaunch() {
     conn.end();
   }
 }
+
 
 checkLastLaunch();
 module.exports = { checkLastLaunch };
