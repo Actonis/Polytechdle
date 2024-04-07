@@ -2,7 +2,8 @@ window.onload = function () {
 
     var namelist= document.getElementById("name-list");
 
-    fetch('http://localhost/Projet/Polytechdle/php/verify.php', {
+
+    fetch('/getNames', {
             method: 'GET',
         })
         .then(response => response.json())
@@ -21,11 +22,11 @@ window.onload = function () {
             // Populate datalist with names from the database
             names.forEach(function(name) {
                 var p = document.createElement('p');
+                p.classList.add('clickable');
                 p.textContent = name;
                 namelist.appendChild(p);
             });
         }
-
 
     var input = document.getElementById("guess");
 
@@ -50,6 +51,14 @@ window.onload = function () {
         }
     });
 
+    namelist.addEventListener("click", function(e) {
+        if (e.target.tagName === "P") {
+            input.value = e.target.textContent;
+            //verify();
+            namelist.style.display = "none";
+        }
+    });
+
     input.addEventListener("input", function() {
         var typedText = input.value.trim();
         
@@ -64,30 +73,7 @@ window.onload = function () {
     });
     
     
-    function verify()
-    {
-        //Code à faire qui appelle le php pour la vérification du guess.
-        var formData = new FormData();
-        //A récuperer ce qu'on écrit pour l'envoyer dans le php. Ici c'est fait automatiquement
-        formData.append('nom', input.value);
-
-        // Make a POST request using Fetch
-        fetch('http://localhost/Projet/Polytechdle/php/verify.php', {
-            method: 'POST',
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Server response:', data);  
-
-            input.value = '';
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-
-    function search() {
+        function search() {
         var typedText = input.value.trim();
         var names = namelist.getElementsByTagName("p");
         var name;
@@ -121,7 +107,7 @@ window.onload = function () {
             }
         }
     }
-}
 
+}
 
 

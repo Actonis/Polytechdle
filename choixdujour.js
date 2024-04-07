@@ -2,15 +2,17 @@ const fs = require('fs');
 const conn = require('./db');
 
 const lastLaunchFilePath = 'lastLaunch.json';
-const limitDifference = 24 * 60 * 60 * 1000;
+var FileAlreadyExist = false;
 
 function getLastLaunchDate() {
   try {
     if (fs.existsSync(lastLaunchFilePath)) {
       const data = fs.readFileSync(lastLaunchFilePath, 'utf8');
+      FileAlreadyExist = true;
       return new Date(JSON.parse(data).lastLaunch);
     } else {
       saveLastLaunchDate();
+      FileAlreadyExist = false;
       return new Date();
     }
   } catch (error) {
@@ -42,7 +44,8 @@ function checkLastLaunch() {
   if (
     lastLaunchDate.getFullYear() !== currentDate.getFullYear() ||
     lastLaunchDate.getMonth() !== currentDate.getMonth() ||
-    lastLaunchDate.getDate() !== currentDate.getDate()
+    lastLaunchDate.getDate() !== currentDate.getDate() ||
+    FileAlreadyExist == false
   ) {
     saveLastLaunchDate();
     conn.query('SELECT * FROM etudiants ORDER BY RAND() LIMIT 1;', (error, results) => {
@@ -60,7 +63,6 @@ function checkLastLaunch() {
         });
       });
     });
-    conn.end();
   }
 }
 
