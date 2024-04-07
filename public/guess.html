@@ -19,27 +19,14 @@
     </div>
 
 
+    <button id="modal-jeu-button" class="modal-jeu-button" type="button">Voir les jeux précédents</button>
+
     <div id="modaljeu" class="modaljeu">
-        <div class="modaljeu-content">
+        <div class="modaljeu-content" id="date-list">
             
         </div>
     </div>
 
-    <script>
-            fetch('/getDates') // Assurez-vous que '/getDates' correspond à votre route serveur
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Dates récupérées depuis le serveur :', data);
-                })
-                .catch(error => {
-                    console.error('Erreur lors de la récupération des dates depuis le serveur :', error);
-                });
-    </script>
 
 
 

@@ -4,7 +4,7 @@ const db = require('./db.js'); // Importez votre connexion à la base de donnée
 
 // Route pour récupérer les dates
 router.get('/', (req, res) => {
-    db.query('SELECT dateduchoix FROM choixdujour', (err, results) => {
+    db.query('SELECT dateduchoix FROM choixdujour ORDER BY dateduchoix DESC', (err, results) => {
         if (err) {
             console.error('Erreur lors de la récupération des dates :', err);
             return res.status(500).json({ error: 'Erreur lors de la récupération des dates' });

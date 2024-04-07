@@ -1,6 +1,11 @@
 window.onload = function () {
 
     var namelist= document.getElementById("name-list");
+    var dateButton = document.getElementById('modal-jeu-button');
+
+    dateButton.addEventListener('click', function () {
+        showModal();
+    });
 
 
     fetch('/getNames', {
@@ -107,6 +112,44 @@ window.onload = function () {
             }
         }
     }
+
+    fetch('/getDates') 
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Dates récupérées depuis le serveur :', data);
+                const dateList = document.getElementById('date-list');
+                data.dates.forEach(date => {
+                    const dateItem = document.createElement('div');
+                    dateItem.textContent = date;
+                    dateItem.classList.add('date-item');
+                    dateItem.addEventListener('click', () => {
+                        console.log('Date sélectionnée :', date);
+                    });
+                    dateList.appendChild(dateItem);
+                });
+            })
+            .catch(error => {
+                console.error('Erreur lors de la récupération des dates depuis le serveur :', error);
+            });
+
+
+            function showModal() {
+                document.getElementById('modaljeu').style.display = 'block';
+                // Add class to darken the background
+                document.getElementById('modaljeu').classList.add('darken-background');
+            }
+        
+            // Function to hide the modal
+            function hideModal() {
+                document.getElementById('modaljeu').style.display = 'none';
+                // Remove class to remove darkened background
+                document.getElementById('modaljeu').classList.remove('darken-background');
+            }
 
 }
 
