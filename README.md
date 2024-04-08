@@ -9,22 +9,24 @@ projet en HTML5 et par la suite convaincre l’auditoire de l’intérêt de not
 
 Présentation du projet :
 Pour notre projet, nous avons souhaité nous inspirer de certains jeux en ligne auxquels nous jouons.
-Prenons l’exemple de « Valodle » (https://valodle.eu/) :
+Prenons l’exemple de « Valodle » ( https://valodle.eu/ ) :
 
 Le but du jeu est assez simple : trouver le « Personnage du jour ». Pour cela, vous proposez
 initialement un nom de personnage. En réponse, l’application indique si différents critères (tels que
 le genre, l'espèce, le rôle, l'origine et l'année de sortie) correspondent ou non. Cela permet de
 réduire progressivement la liste des personnages jusqu'à identifier le bon.
 
-Nous envisageons d'adapter ce jeu au contexte de l&#39;enseignement et de l'administration de Polytech.
+Nous envisageons d'adapter ce jeu avec les étudiants de Polytech. Nous avons fait un sondage et les personnes ayant répondues se voient implémentées dans le jeu.
 Ainsi, les étudiants pourraient tenter de découvrir la « Personne du jour », favorisant une meilleure
-connaissance des membres du personnel de l'école.
+connaissance des étudiants de l'école.
 
 Pour distinguer chaque personne, nous avons envisagé les critères suivants :
-- Nom (élément à deviner)
-- Prénom
-- Âge (ou plage d&#39;âge, si faisable)
+- Nom et prénom (élément à deviner)
+- Âge
 - Genre
-- Département
-- Date d'arrivée à Polytech
-- Statut d'Alumni (oui ou non)
+- Spécialité
+- Si l'étudiant était en PEIP ou non
+- Sa couleur de cheveux
+- Pour les 3A et plus, si il va ou a fait un stage ou semestre à l'étranger
+- Le pays de ce stage ou semestre
+- Son année d'étude

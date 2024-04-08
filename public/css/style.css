@@ -6,9 +6,12 @@
   box-sizing: border-box;
 }
 
+html, body {
+	height: 100%;
+}
+
 body
 {
-    height: 100vh;
     width: 100%;
     background: radial-gradient(#480d35 ,#17151d);
     display: flex;
@@ -20,6 +23,15 @@ body
 }
 
 /* SEXION TITRES */
+
+.wrap {
+  position: relative;
+  height: 100%;
+  min-height: 500px;
+  padding-bottom: 20px;
+}
+
+/* SECTION TITRES */
 
 h1
 {
@@ -61,6 +73,15 @@ h1:hover::after{
   left: -0.04em;
 }
 
+h2 {
+  position: absolute;
+  top: 1.5em;
+  font-family: "Poppins", sans-serif;
+  color: #f6d8d5;
+  background-image: radial-gradient( #f6d8d5);
+  font-size: 70px;
+}
+
 .center {
     display: flex;
     flex-direction: column;
@@ -68,9 +89,11 @@ h1:hover::after{
     align-items: center;
   }
 
+.clickable {
+  cursor: pointer;
+}
 
-
-/* SEXION BOUTONS */
+/* SECTION BOUTONS */
 
 .text{
   text-align:center;
@@ -112,13 +135,47 @@ h1:hover::after{
 
 
 
-.guess-field {
+.container-guess-field {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
+  margin-bottom: 30px;
+  gap: 10px;
 }
+
+.guess-field {
+  gap: 10px;
+}
+
+.guess-input {
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #a54486;
+	background: rgba(#a54486, .2);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+}
+
+.submit-button {
+  display: inline-block;
+  width: 95px;
+  height: 40px;
+  border-radius: 20%;
+  background-color: #691c50;
+  border-color: #691c50;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0%;
+}
+.submit-button:hover {
+  background-color: #832966;
+}
+
 
 /* Initially hide the names list */
 #name-list {
@@ -132,8 +189,7 @@ h1:hover::after{
   border-radius: 10px 30px;
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   overflow-y: auto; /* Enable vertical scrolling */
-  position: absolute;
-  z-index: 1;
+  z-index: 100;
 }
 
 /* Center the names list horizontally */
@@ -152,46 +208,306 @@ h1:hover::after{
   display: block;
 }
 
-/* Barre de navigation */
-.navbar {
-  background-color: #333;
-  color: #fff;
-  padding: 20px 0;
-}
 
-.container {
+
+
+/* MEMORY */
+
+.game {
+  transform-style: preserve-3d;
+  perspective: 500px;
+  min-height: 100%;
+  height: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
+  flex-wrap: wrap;
+  justify-content: center; /* Centrer les cartes horizontalement */
+  align-content: flex-start;
+  align-items: center; /* Centrer les cartes verticalement (si nécessaire) */
+  gap: 10px; /* Cela crée un espace entre les cartes sans avoir à utiliser de margin */
+}
+
+/* Media queries pour ajuster le layout en fonction de la largeur de l'écran */
+@media (min-width: 1200px) {
+  /* Pour les grands écrans, par exemple, 6 cartes par ligne */
+  .game {
+    max-width: calc(150px * 6 + 10px * 5);
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+  /* Pour les écrans moyens, par exemple, 4 cartes par ligne */
+  .game {
+    max-width: calc(150px * 4 + 10px * 3);
+  }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+  /* Pour les petits écrans, par exemple, 3 cartes par ligne */
+  .game {
+    max-width: calc(150px * 3 + 10px * 2);
+  }
+}
+
+@media (max-width: 600px) {
+  .game {
+    justify-content: space-around;
+  }
+  .card {
+    width: calc((100vw - 40px) / 4); /* Fewer columns on smaller screens */
+    height: calc((100vw - 40px) / 4);
+  }
+  .front, .back {
+    padding: 5px;
+  }
+  .modal .winner {
+    font-size: 60px;
+  }
+  .back {
+    padding: 10px;
+  }
+  footer .disclaimer {
+    font-size: 8px;
+  }
+}
+
+@keyframes matchAnim {
+  0% {
+    background: #bcffcc;
+  }
+  100% {
+    background: white;
+  }
+}
+
+.card {
+  float: left;
+  width: 140px;
+  height: 150px;
+  max-width: 150px; /* Maximum size of the cards */
+  min-width: 100px; /* Minimum size of the cards */
+  margin: 0;
+  padding: 5px;
+  text-align: center;
+  display: block;
+  perspective: 500px;
+  position: relative;
+  cursor: pointer;
+  z-index: 50;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.card .inside {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-style: preserve-3d;
+  transition: .4s ease-in-out;
+  background: white;
+}
+
+.card .inside.picked, .card .inside.matched {
+  transform: rotateY(180deg);
+}
+
+.card .inside.matched {
+  animation: 1s matchAnim ease-in-out;
+  animation-delay: .4s;
+}
+
+.card .front, .card .back {
+  border: 1px solid black;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+.card .front img, .card .back img {
+  max-width: 100%;
+  display: block;
   margin: 0 auto;
-  padding: 0 20px;
+  max-height: 100%;
 }
 
-.logo {
-  font-size: 1.5rem;
+.card .front {
+  transform: rotateY(-180deg);
+}
+
+.card .back {
+  transform: rotateX(0); /* fix firefox backface-visibility. */
+}
+
+.modal-overlay {
+  display: none;
+  background: rgba(0,0,0,.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal {
+  display: none;
+  position: relative;
+  width: 500px;
+  height: 400px;
+  max-height: 90%;
+  max-width: 90%;
+  min-height: 380px;
+  margin: 0 auto;
+  background: white;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 30px 10px;
+}
+
+.modal .winner {
+  font-size: 80px;
+  text-align: center;
+  font-family: "Anton", sans-serif;
+  color: #4d4d4d;
+  text-shadow: 0px 3px 0 black;
+}
+
+.modal .restart {
+  font-family: "Anton", sans-serif;
+  margin: 30px auto;
+  padding: 20px 30px;
+  display: block;
+  font-size: 30px;
+  border: none;
+  background: #4d4d4d;
+  background: linear-gradient(#4d4d4d, #222);
+  border: 1px solid #222;
+  border-radius: 5px;
+  color: white;
+  text-shadow: 0px 1px 0 black;
+  cursor: pointer;
+}
+
+.modal .restart:hover {
+  background: linear-gradient(#222, black);
+}
+
+.modal .message {
+  text-align: center;
+}
+
+.modal .message a {
   text-decoration: none;
-  color: #fff;
+  color: #28afe6;
+  font-weight: bold;
 }
 
-.nav-links {
-  list-style: none;
+.modal .message a:hover {
+  color: #4fbce9;
+  border-bottom: 1px dotted #4fbce9;
+  filter: brightness(110%);
 }
 
-.nav-links li {
-  display: inline;
+footer {
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
 }
 
-.nav-links li:not(:last-child) {
-  margin-right: 20px;
+footer .disclaimer {
+  line-height: 20px;
+  font-size: 12px;
+  color: #727272;
+  text-align: center;
 }
 
-.nav-links li a {
-  text-decoration: none;
-  color: #fff;
-  transition: color 0.3s ease;
+.container-clue {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.nav-links li a:hover {
-  color: #ddd;
+.categories, .clues-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.category {
+  margin: 0 10px; /* Add spacing between the categories */
+  position: relative;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  width: 100px; /* Set a fixed width */
+  height: 70px; /* Set a fixed height */
+  padding: 8px; /* Add padding */
+  border-radius: 5px; /* Add rounded corners */
+  text-align: center; /* Center the text horizontally */
+}
+
+.category::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; /* Adjust the thickness of the line */
+  left: 0;
+  width: 100%;
+  height: 2px; /* Adjust the height of the line */
+  background-color: rgb(255, 255, 255); /* Change the color of the line */
+}
+
+.rectangle {
+  margin: 0 10px; /* Add spacing between the categories */
+  position: relative;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  width: 100px; /* Set a fixed width */
+  height: 70px; /* Set a fixed height */
+  padding: 8px; /* Add padding */
+  border-radius: 5px; /* Add rounded corners */
+  text-align: center; /* Center the text horizontally */
+  background-color: #bdbdbd; /* Set the background color of the rectangle */
+  border-radius: 5px; /* Add rounded corners to the rectangle */
+  animation:appears 1s forwards;
+  opacity: 0;
+}
+.vrai {
+  background-color: rgb(98, 201, 98);
+}
+.faux {
+  background-color: rgb(238, 79, 79);
+}
+.presque {
+  background-color: rgb(253, 171, 76);
+}
+
+@keyframes appears {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.modal-end {
+  display : none;
+  text-align:center;
+  color:#f6d8b5;
+  font-size:50px;
+  border:none;
+  font-family:arial;
+  padding:5px 20px;
+  margin:22px auto;
+  background-color:#480d35;
+  z-index:20;
+  transition:all .5s ease-in-out;
+  border-radius:30px /30px;
+  border:2px solid #f6d8b5
 }

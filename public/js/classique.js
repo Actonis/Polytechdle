@@ -1,6 +1,12 @@
 window.onload = function () {
 
     var namelist= document.getElementById("name-list");
+    var sumbitButton = document.getElementById("submit");
+
+    sumbitButton.addEventListener("click", function() {
+        verify();
+    });
+
     fetch('/getNames', {
             method: 'GET',
         })
@@ -20,11 +26,11 @@ window.onload = function () {
             // Populate datalist with names from the database
             names.forEach(function(name) {
                 var p = document.createElement('p');
+                p.classList.add('clickable');
                 p.textContent = name;
                 namelist.appendChild(p);
             });
         }
-
 
     var input = document.getElementById("guess");
 
@@ -49,6 +55,14 @@ window.onload = function () {
         }
     });
 
+    namelist.addEventListener("click", function(e) {
+        if (e.target.tagName === "P") {
+            input.value = e.target.textContent;
+            //verify();
+            namelist.style.display = "none";
+        }
+    });
+
     input.addEventListener("input", function() {
         var typedText = input.value.trim();
         
@@ -68,23 +82,69 @@ window.onload = function () {
         // Get the value of the input field
         const data = { nom: input.value };
 
-        // Make a POST request using Fetch
-        fetch('/verify', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Server response:', data);  
+        if (data.nom === "") {
+            return;
+        }
+        else {
+            // Make a POST request using Fetch
+            fetch('/verify', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                printClues(data);
 
-            input.value = '';
+                input.value = '';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    }
+
+    function printClues(clues) {
+        var cluesContainer = document.createElement('div');
+        cluesContainer.className = "clues-container";
+        cluesContainer.id = "clues-container"
+        cluesContainer.classList.add('categories'); // Add a class for styling
+
+        var parentContainer= document.getElementById("container-clue");
+        parentContainer.appendChild(cluesContainer);
+
+        var i = 0;
+        clues.criterias.forEach(criteria => {
+            const rectangle = document.createElement('div');
+            rectangle.textContent=criteria.value
+
+            if(criteria.correct == "true")
+            {
+                rectangle.classList.add('vrai');
+            }
+            else if(criteria.correct == "false")
+            {
+                rectangle.classList.add('faux');
+            }
+            else if(criteria.correct == "nearly")
+            {
+                rectangle.classList.add('presque');
+            }
+
+            rectangle.classList.add('rectangle'); // Add a class for styling
+            rectangle.style.animationDelay = (i * 0.4) + "s"; // Stagger animation delays
+            cluesContainer.appendChild(rectangle); // Append the rectangle to the container
+            i++;
         })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+
+        // Check end of game after delay
+        setTimeout(function() {
+            if (endOfTheGame(cluesContainer)) {
+                endingTheGame();
+            }
+        }, i * 0.4 * 1000); // Convert seconds to milliseconds
     }
 
     function search() {
@@ -120,6 +180,36 @@ window.onload = function () {
                 noResultMessage.remove();
             }
         }
+    }
+
+    function endOfTheGame(responses) {
+        //responses = document.querySelectorAll("#clues-container")
+        var end = true;
+        for(i=0; i<responses.children.length; i++){
+            if(responses.children[i].classList.contains('faux'))
+            {
+                end = false
+            }
+        }
+
+        if(end)
+        {
+            return true
+        }
+        else
+        {
+            return false
+        }
+    }
+
+    function endingTheGame() {
+        congrateMessage = document.getElementById('modal-end')
+
+        congrateMessage.style.display = 'block';
+
+        console.log(document.getElementById('container-guess-field'))
+
+        document.getElementById('container-guess-field').style.display = 'none';
     }
 }
 
