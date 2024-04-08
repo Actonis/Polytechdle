@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const verifyRoute = require('./verify.js');
+const getNamesRoute = require('./getNames.js');
 const launchChecker = require('./choixdujour.js');
 const getNamesRoute = require('./getNames.js');
 const getDatesRoute = require('./getDates.js')
@@ -11,6 +13,10 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
 });
+
+app.use('/getNames', getNamesRoute); // Using the getNames route
+
+app.use('/verify', verifyRoute); // Using the verification route
 
 app.get('/checkLastLaunch', (req, res) => {
     launchChecker.checkLastLaunch();
