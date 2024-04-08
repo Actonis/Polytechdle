@@ -2,10 +2,43 @@ window.onload = function () {
 
     var namelist= document.getElementById("name-list");
     var sumbitButton = document.getElementById("submit");
+    var sumbitButton2 = document.getElementById("submit2");
 
     sumbitButton.addEventListener("click", function() {
         verify();
     });
+
+    sumbitButton2.addEventListener("click", function() {
+        hideModal();
+        const selectedDate = document.querySelector('.date-item-container.selected .date-item').textContent;
+        const url = `guess_mirror.html?date=${encodeURIComponent(selectedDate)}`;
+        window.location.href = url;
+
+
+        fetch("/handleDate", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ date: selectedDate })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Traitement de la réponse du serveur si nécessaire
+            console.log('Réponse du serveur :', data);
+        })
+        .catch(error => {
+            console.error('Erreur lors de la requête vers le serveur :', error);
+        });
+
+
+    });
+
     var dateButton = document.getElementById('modal-jeu-button');
 
     dateButton.addEventListener('click', function () {
