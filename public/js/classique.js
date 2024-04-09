@@ -2,10 +2,49 @@ window.onload = function () {
 
     var namelist= document.getElementById("name-list");
     var sumbitButton = document.getElementById("submit");
+    var sumbitButton2 = document.getElementById("submit2");
 
     sumbitButton.addEventListener("click", function() {
         verify();
     });
+
+    sumbitButton2.addEventListener("click", function() {
+        hideModal();
+        const selectedDate = document.querySelector('.date-item-container.selected .date-item').textContent;
+        const url = `guess_mirror.html?date=${encodeURIComponent(selectedDate)}`;
+        window.location.href = url;
+
+
+        fetch("/handleDate", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ date: selectedDate })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Traitement de la réponse du serveur si nécessaire
+            console.log('Réponse du serveur :', data);
+        })
+        .catch(error => {
+            console.error('Erreur lors de la requête vers le serveur :', error);
+        });
+
+
+    });
+
+    var dateButton = document.getElementById('modal-jeu-button');
+
+    dateButton.addEventListener('click', function () {
+        showModal();
+    });
+
 
     fetch('/getNames', {
             method: 'GET',
@@ -209,7 +248,52 @@ window.onload = function () {
         document.getElementById('container-guess-field').style.display = 'none';
 
     }
-}
 
+    fetch('/getDates') 
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Dates récupérées depuis le serveur :', data);
+        const dateList = document.getElementById('date-list');
+        data.dates.forEach(date => {
+            const dateItemContainer = document.createElement('div');
+            dateItemContainer.classList.add('date-item-container');
+
+            const dateItem = document.createElement('div');
+            dateItem.textContent = date;
+            dateItem.classList.add('date-item');
+            dateItem.addEventListener('click', () => {
+                console.log('Date sélectionnée :', date);
+                dateItemContainer.classList.toggle('selected');
+            });
+
+            dateItemContainer.appendChild(dateItem);
+            dateList.appendChild(dateItemContainer);
+        });
+    })
+    .catch(error => {
+        console.error('Erreur lors de la récupération des dates depuis le serveur :', error);
+    });
+
+
+
+            function showModal() {
+                document.getElementById('modaljeu').style.display = 'block';
+                // Add class to darken the background
+                document.getElementById('modaljeu').classList.add('darken-background');
+            }
+        
+            // Function to hide the modal
+            function hideModal() {
+                document.getElementById('modaljeu').style.display = 'none';
+                // Remove class to remove darkened background
+                document.getElementById('modaljeu').classList.remove('darken-background');
+            }
+
+}
 
 
