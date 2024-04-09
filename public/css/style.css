@@ -17,9 +17,9 @@ body
     display: flex;
     flex-direction: column;
     place-items: center;  
-    justify-content: center;
     padding: 20px; /* Optional: Add some padding around the containers */
     color : white;
+    overflow-y: auto;
 }
 
 .wrap {
@@ -27,6 +27,29 @@ body
   height: 100%;
   min-height: 500px;
   padding-bottom: 20px;
+}
+
+
+/* SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #691c50;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #832966;
 }
 
 /* SECTION TITRES */
@@ -38,6 +61,7 @@ h1
     color: #f6d8d5;
     background-image: radial-gradient( #f6d8d5);
     font-size: 150px;
+    justify-content: center;
 }
 
 h1::before{
@@ -72,7 +96,7 @@ h1:hover::after{
 }
 
 h2 {
-  position: absolute;
+  position: relative;
   top: 1.5em;
   font-family: "Poppins", sans-serif;
   color: #f6d8d5;
@@ -89,6 +113,9 @@ h2 {
 
 .clickable {
   cursor: pointer;
+}
+.clickable:hover {
+  background-color: #ebebeb;
 }
 
 /* SECTION BOUTONS */
@@ -131,32 +158,6 @@ h2 {
   background-color:transparent
 }
 
-
-
-.container-guess-field {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
-  margin-bottom: 30px;
-  gap: 10px;
-}
-
-.guess-field {
-  gap: 10px;
-}
-
-.guess-input {
-	appearance: none;
-	border: none;
-	outline: none;
-	border-bottom: .2em solid #a54486;
-	background: rgba(#a54486, .2);
-	border-radius: .2em .2em 0 0;
-	padding: .4em;
-}
-
 .submit-button {
   display: inline-block;
   width: 95px;
@@ -183,17 +184,21 @@ h2 {
   width: 200px;
   height: 200px;
   margin-top: 10px;
-  border: 1px solid black;
-  border-radius: 10px 30px;
-  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
-  overflow-y: auto; /* Enable vertical scrolling */
-  z-index: 100;
+  border: 2px solid #37392e;
+  border-radius: 5px;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior-y: contain;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-timeline: --listTimeline block;
+  z-index: 1000;
+  position: absolute;
 }
 
 /* Center the names list horizontally */
 #name-list {
-  left: 50%;
-  transform: translateX(-50%);
+  transform: translateY(60%) translateX(-20%);
+  font-family: "Poppins", sans-serif;
 }
 
 /* Style for individual name entries */
@@ -206,6 +211,106 @@ h2 {
   display: block;
 }
 
+.container-guess-field {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 10px;
+  position: relative;
+}
+
+.guess-field {
+  gap: 10px;
+}
+
+.guess-input {
+	appearance: none;
+	border: none;
+	outline: none;
+	border-bottom: .2em solid #a54486;
+	background: rgba(#a54486, .2);
+	border-radius: .2em .2em 0 0;
+	padding: .4em;
+}
+
+.container-clue {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+  margin-top: 20px;
+  position: absolute;
+  z-index: 1000;
+  z-index: 1;
+  top: 43%;
+}
+
+.categories, .clues-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.category {
+  margin: 0 10px; /* Add spacing between the categories */
+  position: relative;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  width: 100px; /* Set a fixed width */
+  height: 70px; /* Set a fixed height */
+  padding: 8px; /* Add padding */
+  border-radius: 5px; /* Add rounded corners */
+  text-align: center; /* Center the text horizontally */
+}
+
+.category::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; /* Adjust the thickness of the line */
+  left: 0;
+  width: 100%;
+  height: 2px; /* Adjust the height of the line */
+  background-color: rgb(255, 255, 255); /* Change the color of the line */
+}
+
+.rectangle {
+  margin: 0 10px; /* Add spacing between the categories */
+  position: relative;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+  width: 100px; /* Set a fixed width */
+  height: 70px; /* Set a fixed height */
+  padding: 8px; /* Add padding */
+  border-radius: 5px; /* Add rounded corners */
+  text-align: center; /* Center the text horizontally */
+  background-color: #bdbdbd; /* Set the background color of the rectangle */
+  border-radius: 5px; /* Add rounded corners to the rectangle */
+  animation:appears 1s forwards;
+  opacity: 0;
+}
+.vrai {
+  background-color: rgb(98, 201, 98);
+}
+.faux {
+  background-color: rgb(238, 79, 79);
+}
+.presque {
+  background-color: rgb(253, 171, 76);
+}
+
+@keyframes appears {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 
 
 
@@ -422,80 +527,10 @@ footer .disclaimer {
   text-align: center;
 }
 
-.container-clue {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.categories, .clues-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.category {
-  margin: 0 10px; /* Add spacing between the categories */
-  position: relative;
-  display: flex; /* Use flexbox */
-  justify-content: center; /* Center the text horizontally */
-  align-items: center; /* Center the text vertically */
-  width: 100px; /* Set a fixed width */
-  height: 70px; /* Set a fixed height */
-  padding: 8px; /* Add padding */
-  border-radius: 5px; /* Add rounded corners */
-  text-align: center; /* Center the text horizontally */
-}
-
-.category::after {
-  content: '';
-  position: absolute;
-  bottom: -2px; /* Adjust the thickness of the line */
-  left: 0;
-  width: 100%;
-  height: 2px; /* Adjust the height of the line */
-  background-color: rgb(255, 255, 255); /* Change the color of the line */
-}
-
-.rectangle {
-  margin: 0 10px; /* Add spacing between the categories */
-  position: relative;
-  display: flex; /* Use flexbox */
-  justify-content: center; /* Center the text horizontally */
-  align-items: center; /* Center the text vertically */
-  width: 100px; /* Set a fixed width */
-  height: 70px; /* Set a fixed height */
-  padding: 8px; /* Add padding */
-  border-radius: 5px; /* Add rounded corners */
-  text-align: center; /* Center the text horizontally */
-  background-color: #bdbdbd; /* Set the background color of the rectangle */
-  border-radius: 5px; /* Add rounded corners to the rectangle */
-  animation:appears 1s forwards;
-  opacity: 0;
-}
-.vrai {
-  background-color: rgb(98, 201, 98);
-}
-.faux {
-  background-color: rgb(238, 79, 79);
-}
-.presque {
-  background-color: rgb(253, 171, 76);
-}
-
-@keyframes appears {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .modal-end {
   display : none;
+  position: absolute;
+  top: 27%;
   text-align:center;
   color:#f6d8b5;
   font-size:50px;
