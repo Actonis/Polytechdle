@@ -61,9 +61,15 @@ function checkLastLaunch() {
             return;
           }
         });
-        conn.query('INSERT INTO reponse (eleve, age, genre, specialite, peip, couleur_cheveux, etudes_etranger, pays_etranger, annee_etude) VALUES (?,?,?,?,?,?,?,?,?)', [etudiants.eleve, etudiants.age, etudiants.genre, etudiants.specialite, etudiants.peip, etudiants.couleur_cheveux, etudiants.etudes_etranger, etudiants.pays_etranger, etudiants.annee_etude], (insertError2, insertResults2) => {
+        conn.query('DELETE FROM reponse', (insertError2, insertResults2) => {
           if (insertError2) {
             console.error('Erreur lors de l\'insertion dans la table choix_du_jour :', insertError2);
+            return;
+          }
+        });
+        conn.query('INSERT INTO reponse (eleve, age, genre, specialite, peip, couleur_cheveux, etudes_etranger, pays_etranger, annee_etude) VALUES (?,?,?,?,?,?,?,?,?)', [etudiants.eleve, etudiants.age, etudiants.genre, etudiants.specialite, etudiants.peip, etudiants.couleur_cheveux, etudiants.etudes_etranger, etudiants.pays_etranger, etudiants.annee_etude], (insertError3, insertResults3) => {
+          if (insertError3) {
+            console.error('Erreur lors de l\'insertion dans la table choix_du_jour :', insertError3);
             return;
           }
         });
