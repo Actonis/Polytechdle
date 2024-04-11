@@ -40,21 +40,25 @@ rezo :
 3) https://files.u-angers.fr/data/f-9c56fabad7d296da10dd4b64.png
 
 - Paris Saclay
-1) 
-2) 
-3) 
+1) https://files.u-angers.fr/data/f-4dc410ece8b41c6eaba1978a.png
+2) https://files.u-angers.fr/data/f-af6eb2e5f5e3beaab37f6487.png
+3) https://files.u-angers.fr/data/f-f880a92a3c2e695bae1832f1.png
+
 - Nancy
-1) 
-2) 
-3) 
+1) https://files.u-angers.fr/data/f-1879c2e05d6670d8fd44b2a3.png
+2) https://files.u-angers.fr/data/f-2760447989be1cd2fa8e14bc.png
+3) https://files.u-angers.fr/data/f-c664b90f84ea7e9cb0584dcc.png
+
 - Orléans
-1) 
-2) 
-3) 
+1) https://files.u-angers.fr/data/f-99b3da6e29ccf28c57dbbc4d.png
+2) https://files.u-angers.fr/data/f-63cd9ee020661b663da4eaaf.png
+3) https://files.u-angers.fr/data/f-fd152471450ea081a69f78bb.png
+
 - Dijon
-1) 
-2) 
-3) 
+1) https://files.u-angers.fr/data/f-34bb367304a0002d4542a7ea.png
+2) https://files.u-angers.fr/data/f-06f87d3cbc7230f15e3b72f1.png
+3) https://files.u-angers.fr/data/f-219d1a6423d7cd436db31f50.png
+
 - Tours
 1) 
 2) 
