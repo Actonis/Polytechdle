@@ -53,17 +53,17 @@ function checkLastLaunch() {
         console.error('Erreur lors de la récupération des professeurs :', error);
         return;
       }
+      conn.query('DELETE FROM reponse', (insertError2, insertResults2) => {
+        if (insertError2) {
+          console.error('Erreur lors de l\'insertion dans la table choix_du_jour :', insertError2);
+          return;
+        }
+      });
       results.forEach((etudiants) => {
         // Insérer le résultat dans la table choix_du_jour
         conn.query('INSERT INTO choixdujour (nom) VALUES (?)', [etudiants.eleve], (insertError, insertResults) => {
           if (insertError) {
             console.error('Erreur lors de l\'insertion dans la table choix_du_jour :', insertError);
-            return;
-          }
-        });
-        conn.query('DELETE FROM reponse', (insertError2, insertResults2) => {
-          if (insertError2) {
-            console.error('Erreur lors de l\'insertion dans la table choix_du_jour :', insertError2);
             return;
           }
         });
@@ -74,6 +74,30 @@ function checkLastLaunch() {
           }
         });
       });
+    });
+
+    conn.query('SELECT * FROM etudiants WHERE specialite = "SAGI" AND annee_etude = "4A" ORDER BY RAND() LIMIT 1;', (error, results) => {
+      if (error) {
+        console.error('Erreur lors de la récupération des professeurs :', error);
+        return;
+      }
+      conn.query('DELETE FROM reponseSagi', (insertError2, insertResults2) => {
+        if (insertError2) {
+          console.error('Erreur lors de l\'insertion dans la table choix_du_jour :', insertError2);
+          return;
+        }
+      });
+
+      results.forEach((etudiants) => {
+        conn.query('INSERT INTO reponseSagi (eleve, age, genre, peip, couleur_cheveux, etudes_etranger, pays_etranger) VALUES (?,?,?,?,?,?,?)', [etudiants.eleve, etudiants.age, etudiants.genre, etudiants.peip, etudiants.couleur_cheveux, etudiants.etudes_etranger, etudiants.pays_etranger], (insertError3, insertResults3) => {
+          if (insertError3) {
+            console.error('Erreur lors de l\'insertion dans la table choix_du_jour :', insertError3);
+            return;
+          }
+        });
+      });
+    
+    
     });
   }
 }
