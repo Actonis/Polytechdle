@@ -60,46 +60,46 @@ rezo :
 3) https://files.u-angers.fr/data/f-219d1a6423d7cd436db31f50.png
 
 - Tours
-1) 
-2) 
-3) 
+1) https://files.u-angers.fr/data/f-e1078307c9d117f3256956dd.png
+2) https://files.u-angers.fr/data/f-05d55bcadff4b6dd2814a3dc.png
+3) https://files.u-angers.fr/data/f-3244c7b215b0e48cf6433794.png
+
 - Angers
-1) 
-2) 
-3) 
-- Nantes
-1) 
-2) 
-3) 
-- Gavy
-1) 
-2) 
-3) 
-- Annecy
-1) 
-2) 
-3) 
-- Chambéry
-1) 
-2) 
-3) 
+1) https://files.u-angers.fr/data/f-0053403c84c500cf014fb507.png
+2) https://files.u-angers.fr/data/f-b39ae6748c89f47e00bcf553.png
+3) https://files.u-angers.fr/data/f-1f04e38ee2e4c710bfa5a11f.png
+
+- Nantes-Gavy
+1) https://files.u-angers.fr/data/f-f0e0f900b763a30f871abad7.png
+2) https://files.u-angers.fr/data/f-4c532b54de38151f2d7e41ad.png
+3) https://files.u-angers.fr/data/f-78368dc20d180885919f62df.png
+
+- Annecy-Chambéry
+1) https://files.u-angers.fr/data/f-fa29dbff79480562f3813b47.png
+2) https://files.u-angers.fr/data/f-0e6a279f0ec492b4b5d1ae06.png
+3) https://files.u-angers.fr/data/f-d150ed74bfa0e25771b89862.png
+
 - Lyon
-1) 
-2) 
-3) 
+1) https://files.u-angers.fr/data/f-75dfa75783c0c02879bc122b.png
+2) https://files.u-angers.fr/data/f-710ecd2cb612286ecae3803b.png
+3) https://files.u-angers.fr/data/f-7f9c93bbb8a26b1447eee732.png
+
 - Clermont
-1) 
-2) 
-3) 
+1) https://files.u-angers.fr/data/f-359c187031b9c5d3f3832e04.png
+2) https://files.u-angers.fr/data/f-6f3c95a07b0384d8a53f30e9.png
+3) https://files.u-angers.fr/data/f-1ddf5531f5247c426a79085f.png
+
 - Nice Sophia
-1) 
-2) 
-3) 
+1) https://files.u-angers.fr/data/f-19abc1f924f29195c1536a55.png
+2) https://files.u-angers.fr/data/f-726d531633ad08e6073c54d5.png
+3) https://files.u-angers.fr/data/f-d7872f726d0ec45fdf70beee.png
+
 - Marseille
-1) 
-2) 
-3) 
+1) https://files.u-angers.fr/data/f-6b1ee0fc0b472ba74007d714.png
+2) https://files.u-angers.fr/data/f-0df7feef0b0fb91039fc9c56.png
+3) https://files.u-angers.fr/data/f-37180a564ccb84694ea2ac40.png
+
 - Montpellier
-1) 
-2) 
-3) 
+1) https://files.u-angers.fr/data/f-d9f7030a1614cd2eecbed230.png
+2) https://files.u-angers.fr/data/f-c44eca2438b678604d9bd3a3.png
+3) https://files.u-angers.fr/data/f-18cd7f7c993697a345b13abc.png
