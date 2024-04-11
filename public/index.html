@@ -13,8 +13,19 @@
     <div class="center">
         <button class="text" onclick="window.location.href = './guess.html';">4A&nbsp;mode</button>
         <button class="text" onclick="window.location.href = '/services.html';">BDE&nbsp;mode</button>
-        <button class="text" onclick="window.location.href = '/portfolio.html';">Memory&nbsp;mode</button>
-        <button class="text" onclick="window.location.href = '/contact.html';">Poly&nbsp;mode</button>
+        <button class="text" onclick="window.location.href = '/memory.html';">Memory&nbsp;mode</button>
+        <button class="text" onclick="window.location.href = '/tictactoe.html';">TicTacToe</button>
     </div>
+    <script>
+        fetch('/checkLastLaunch')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('La requête a échoué');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de la requête :', error);
+            });
+    </script>
 </body>
 </html>
