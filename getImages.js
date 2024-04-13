@@ -11,8 +11,8 @@ router.get('/', (req, res) => {
             return;
         }
 
-        const names = results.map(row => row.ecole);
-        res.json({ ecole });
+        const ecoles = results.map(row => row.ecole);
+        res.json({ ecoles });
     });
 });
 

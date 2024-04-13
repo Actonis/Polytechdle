@@ -3,6 +3,8 @@ window.onload = function () {
     var geolist= document.getElementById("geo-list");
     var sumbitButton = document.getElementById("submit");
 
+    var erreur = 0;
+
     sumbitButton.addEventListener("click", function() {
         verify();
     });
@@ -12,7 +14,7 @@ window.onload = function () {
         })
         .then(response => response.json())
         .then(data => { 
-            populateDatalist(data.ecole);
+            populateDatalist(data.ecoles);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -96,6 +98,7 @@ window.onload = function () {
         }
         else {
             // Make a POST request using Fetch
+            console.log(data)
             fetch('/verifyImg', {
                 method: 'POST',
                 headers: {
@@ -108,7 +111,38 @@ window.onload = function () {
                 if (data.correct === "true") {
                     return endingTheGame();
                 } else {
-                    return alert("Mauvaise réponse, on te facilite la tâche gros nullos");
+                    erreur += 1;
+                    if (erreur >= 3) {
+                        alert("Vous avez perdu, la réponse était " + data.response);
+                    }
+                    else if (erreur === 1) {
+                        fetch('/setImg2', {
+                            method: 'GET',
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            var img = document.getElementById("geo-img");
+                            img.src = data.lien;
+                            alert("Mauvaise réponse, vous avez encore " + (3 - erreur) + " essais");
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                    else if (erreur === 2) {
+                        fetch('/setImg3', {
+                            method: 'GET',
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            var img = document.getElementById("geo-img");
+                            img.src = data.lien;
+                            alert("Mauvaise réponse, vous avez encore " + (3 - erreur) + " essais");
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
                 }
             })
             .catch(error => {
