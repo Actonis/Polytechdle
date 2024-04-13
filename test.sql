@@ -200,9 +200,9 @@ INSERT INTO `reponsesagi` (`id`, `eleve`, `age`, `genre`, `peip`, `couleur_cheve
 --
 CREATE TABLE `polyguessr` (
   `id` int(11) NOT NULL,
-  `ecole` varchar(255) NOT NULL,
+  `ecole` varchar(100) NOT NULL,
   `num_guess` int(11) DEFAULT NULL,
-  `lien` varchar(10) DEFAULT NULL
+  `lien` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 INSERT INTO `polyguessr` (`id`, `ecole`, `num_guess`, `lien`) VALUES
@@ -286,6 +286,8 @@ INSERT INTO `polyguessr` (`id`, `ecole`, `num_guess`, `lien`) VALUES
 (59, 'Polytech Montpellier', 2, 'https://files.u-angers.fr/data/f-c44eca2438b678604d9bd3a3.png'),
 (60, 'Polytech Montpellier', 3, 'https://files.u-angers.fr/data/f-18cd7f7c993697a345b13abc.png');
 
+ALTER TABLE `polyguessr`
+  ADD PRIMARY KEY (`id`);
 --
 -- Index pour les tables déchargées
 --

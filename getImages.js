@@ -4,7 +4,7 @@ const db = require('./db.js'); // Import your database connection
 
 // Route for fetching Images directories
 router.get('/', (req, res) => {
-    db.query('SELECT chemin FROM images ORDER BY number ASC', (err, results) => {
+    db.query('SELECT lien FROM images ORDER BY id ASC', (err, results) => {
         if (err) {
             console.error('Error fetching images:', err);
             res.status(500).json({ error: 'Internal server error' });
