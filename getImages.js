@@ -4,18 +4,16 @@ const db = require('./db.js'); // Import your database connection
 
 // Route for fetching Images directories
 router.get('/', (req, res) => {
-    db.query('SELECT lien FROM images ORDER BY id ASC', (err, results) => {
+    db.query('SELECT ecole FROM polyguessr WHERE num_guess = 1', (err, results) => {
         if (err) {
-            console.error('Error fetching images:', err);
+            console.error('Error fetching ecole:', err);
             res.status(500).json({ error: 'Internal server error' });
             return;
         }
 
-        const names = results.map(row => row.eleve);
-        res.json({ names });
+        const names = results.map(row => row.ecole);
+        res.json({ ecole });
     });
 });
 
 module.exports = router;
-
-//Attention !! DB à créer pour les images (3 par ville car 3 essais possibles sinon vous êtes des merdes)

@@ -139,7 +139,7 @@ INSERT INTO `etudiants` (`id`, `eleve`, `age`, `genre`, `specialite`, `peip`, `c
 (62, 'Dalleau Manon', 20, 'Femme', 'GBS', 'Non', 'Chatain(e)', 'Stage', 'Tchequie', '4A'),
 (63, 'Judon Raphael', 19, 'Homme', 'Peip', 'Oui a Angers', 'Brun(e)', '', '', 'Peip 1'),
 (64, 'Moncoiffet Leo', 21, 'Homme', 'SAGI', 'Oui a Angers', 'Brun(e)', 'Semestre', 'Pologne', '4A'),
-(66, 'Creusier Thomas ', 22, 'Homme', 'SAGI', 'Oui a Angers', 'Brun(e)', 'Stage', 'Royaume-Unis', '4A')
+(66, 'Creusier Thomas ', 22, 'Homme', 'SAGI', 'Oui a Angers', 'Brun(e)', 'Stage', 'Royaume-Unis', '4A'),
 (67, 'Jagueneau Katia', 21, 'Femme', 'SAGI', 'Non', 'Chatain(e)', 'Semestre', 'Malte', '4A');
 
 -- --------------------------------------------------------
@@ -288,6 +288,22 @@ INSERT INTO `polyguessr` (`id`, `ecole`, `num_guess`, `lien`) VALUES
 
 ALTER TABLE `polyguessr`
   ADD PRIMARY KEY (`id`);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `polyguessrchoix`
+--
+
+CREATE TABLE `polyguessrchoix` (
+  `id` int(11) NOT NULL,
+  `ecole` varchar(100) NOT NULL,
+  `num_guess` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `polyguessrchoix`
+  ADD PRIMARY KEY (`id`);
+
 --
 -- Index pour les tables déchargées
 --
