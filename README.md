@@ -30,3 +30,10 @@ Pour distinguer chaque personne, nous avons envisagé les critères suivants :
 - Pour les 3A et plus, si il va ou a fait un stage ou semestre à l'étranger
 - Le pays de ce stage ou semestre
 - Son année d'étude
+
+
+## Mode d'emploi
+La base de donnée avec les enregistrements et les tables nécéssaires est dans le script test.sql.
+Une fois la BDD ajoutée via XAMPP, il faut s'assurer que le module Apache et MySql lancés avant de lancer l'application.
+
+Pour lancer le site, il suffit d'utiliser node et le fichier app.js.

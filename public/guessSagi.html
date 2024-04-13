@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Polytechdle</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="img/favicon-16x16.ico">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+</head>
+<body>
+    <h2>Mode de jeu Sagi</h2>
+
+    <div id="container-guess-field" class="container-guess-field">
+        <div class="guess-field">
+            <input class="guess-input" list="text" id="guess" autocomplete="off">
+            <button class='submit-button' id="submit">Valider</button>
+        </div>
+
+        <div class="name-list" id="name-list">
+        </div>
+    </div>
+
+    <div class="container-clue" id="container-clue">
+        <div class="categories">
+            <span class="category">Nom</span>
+            <span class="category">Age</span>
+            <span class="category">Genre</span>
+            <span class="category">Peip ou non</span>
+            <span class="category">Couleur de cheveux</span>
+            <span class="category">Semestre ou stage à l'étranger</span>
+            <span class="category">Pays semestre 6</span>
+        </div>
+    </div>
+
+
+    <div class="modal-end" id="modal-end">
+        <span class="congrates">Bien joué vous avez trouvé !</span>
+    </div>
+
+</body>
+<script type="text/javascript" src="js/classiqueSagi.js"></script>
+</html>
