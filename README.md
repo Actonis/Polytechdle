@@ -36,4 +36,5 @@ Pour distinguer chaque personne, nous avons envisagé les critères suivants :
 La base de donnée avec les enregistrements et les tables nécéssaires est dans le script test.sql.
 Une fois la BDD ajoutée via XAMPP, il faut s'assurer que le module Apache et MySql lancés avant de lancer l'application.
 
-Pour lancer le site, il suffit d'utiliser node et le fichier app.js.
+Avant de lancer le site, il est important de faire npm install pour récupérer toutes les dépendances nécéssaires au projet.
+Enfin, pour lancer le site, il suffit d'utiliser node et le fichier app.js.
