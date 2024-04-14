@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 14 avr. 2024 à 13:46
+-- Généré le : dim. 14 avr. 2024 à 22:45
 -- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.0.30
+-- Version de PHP : 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,8 @@ INSERT INTO `choixdujour` (`id`, `nom`, `dateduchoix`) VALUES
 (21, 'Mandoux Leo', '2024-04-07'),
 (22, 'Rey Leo', '2024-04-08'),
 (27, 'Albouze Antoine ', '2024-04-11'),
-(28, 'Peridy Theo', '2024-04-14');
+(28, 'Peridy Theo', '2024-04-14'),
+(29, 'Dalleau Manon', '2024-04-14');
 
 --
 -- Déclencheurs `choixdujour`
@@ -140,7 +141,10 @@ INSERT INTO `etudiants` (`id`, `eleve`, `age`, `genre`, `specialite`, `peip`, `c
 (62, 'Dalleau Manon', 20, 'Femme', 'GBS', 'Non', 'Chatain(e)', 'Stage', 'Tchequie', '4A'),
 (63, 'Judon Raphael', 19, 'Homme', 'Peip', 'Oui a Angers', 'Brun(e)', '', '', 'Peip 1'),
 (64, 'Moncoiffet Leo', 21, 'Homme', 'SAGI', 'Oui a Angers', 'Brun(e)', 'Semestre', 'Pologne', '4A'),
-(66, 'Creusier Thomas ', 22, 'Homme', 'SAGI', 'Oui a Angers', 'Brun(e)', 'Stage', 'Royaume-Unis', '4A');
+(66, 'Creusier Thomas ', 22, 'Homme', 'SAGI', 'Oui a Angers', 'Brun(e)', 'Stage', 'Royaume-Unis', '4A'),
+(67, 'Katia Jagueneau', 22, 'Femme', 'SAGI', 'Non', 'Chatain(e)', 'Semestre', 'Malte', '4A'),
+(68, 'Pierrick Jouron', 21, 'Homme', 'SAGI', 'Oui a Angers', 'Brun', 'Stage', 'Brésil', '4A'),
+(69, 'Florentin Lochon', 21, 'Homme', 'SAGI', 'Oui dans le rezo', 'Chatain(e)', 'Semestre', 'Pologne', '4A');
 
 -- --------------------------------------------------------
 
@@ -166,7 +170,7 @@ CREATE TABLE `reponse` (
 --
 
 INSERT INTO `reponse` (`id`, `eleve`, `age`, `genre`, `specialite`, `peip`, `couleur_cheveux`, `etudes_etranger`, `pays_etranger`, `annee_etude`) VALUES
-(0, 'Peridy Theo', 21, 'Homme', 'SAGI', 'Non', 'Brun(e)', 'Stage', 'Allemagne ', '4A');
+(0, 'Dalleau Manon', 20, 'Femme', 'GBS', 'Non', 'Chatain(e)', 'Stage', 'Tchequie', '4A');
 
 -- --------------------------------------------------------
 
@@ -216,7 +220,7 @@ CREATE TABLE `reponsesagi` (
 --
 
 INSERT INTO `reponsesagi` (`id`, `eleve`, `age`, `genre`, `peip`, `couleur_cheveux`, `etudes_etranger`, `pays_etranger`) VALUES
-(0, 'Moncoiffet Leo', 21, 'Homme', 'Oui a Angers', 'Brun(e)', 'Semestre', 'Pologne');
+(0, 'Peneau Adam', 21, 'Homme', 'Oui a Angers', 'Brun(e)', 'Stage', 'Lituanie ');
 
 --
 -- Index pour les tables déchargées
@@ -248,13 +252,13 @@ ALTER TABLE `reponsemirroir`
 -- AUTO_INCREMENT pour la table `choixdujour`
 --
 ALTER TABLE `choixdujour`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT pour la table `etudiants`
 --
 ALTER TABLE `etudiants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT pour la table `reponsemirroir`
