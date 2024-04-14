@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 11 avr. 2024 à 17:41
+-- Généré le : dim. 14 avr. 2024 à 13:46
 -- Version du serveur : 10.4.32-MariaDB
--- Version de PHP : 8.2.12
+-- Version de PHP : 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,8 @@ INSERT INTO `choixdujour` (`id`, `nom`, `dateduchoix`) VALUES
 (3, 'Jarry Valentine', '2024-04-06'),
 (21, 'Mandoux Leo', '2024-04-07'),
 (22, 'Rey Leo', '2024-04-08'),
-(27, 'Albouze Antoine ', '2024-04-11');
+(27, 'Albouze Antoine ', '2024-04-11'),
+(28, 'Peridy Theo', '2024-04-14');
 
 --
 -- Déclencheurs `choixdujour`
@@ -165,7 +166,33 @@ CREATE TABLE `reponse` (
 --
 
 INSERT INTO `reponse` (`id`, `eleve`, `age`, `genre`, `specialite`, `peip`, `couleur_cheveux`, `etudes_etranger`, `pays_etranger`, `annee_etude`) VALUES
-(0, 'Albouze Antoine ', 22, 'Homme', 'GBS', 'Non', 'Brun(e)', 'Stage', 'Danemark ', '4A');
+(0, 'Peridy Theo', 21, 'Homme', 'SAGI', 'Non', 'Brun(e)', 'Stage', 'Allemagne ', '4A');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reponsemirroir`
+--
+
+CREATE TABLE `reponsemirroir` (
+  `id` int(11) NOT NULL,
+  `eleve` varchar(250) NOT NULL,
+  `age` int(250) NOT NULL,
+  `genre` varchar(250) NOT NULL,
+  `specialite` varchar(250) NOT NULL,
+  `peip` varchar(250) NOT NULL,
+  `couleur_cheveux` varchar(250) NOT NULL,
+  `etudes_etranger` varchar(250) NOT NULL,
+  `pays_etranger` varchar(250) NOT NULL,
+  `annee_etude` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `reponsemirroir`
+--
+
+INSERT INTO `reponsemirroir` (`id`, `eleve`, `age`, `genre`, `specialite`, `peip`, `couleur_cheveux`, `etudes_etranger`, `pays_etranger`, `annee_etude`) VALUES
+(11, 'Peridy Theo', 21, 'Homme', 'SAGI', 'Non', 'Brun(e)', 'Stage', 'Allemagne ', '4A');
 
 -- --------------------------------------------------------
 
@@ -189,7 +216,7 @@ CREATE TABLE `reponsesagi` (
 --
 
 INSERT INTO `reponsesagi` (`id`, `eleve`, `age`, `genre`, `peip`, `couleur_cheveux`, `etudes_etranger`, `pays_etranger`) VALUES
-(0, 'Chien Chow Chine Mathys', 21, 'Homme', 'Oui a Angers', 'Chatain(e)', 'Stage', 'Espagne');
+(0, 'Moncoiffet Leo', 21, 'Homme', 'Oui a Angers', 'Brun(e)', 'Semestre', 'Pologne');
 
 --
 -- Index pour les tables déchargées
@@ -208,6 +235,12 @@ ALTER TABLE `etudiants`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `reponsemirroir`
+--
+ALTER TABLE `reponsemirroir`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -215,13 +248,19 @@ ALTER TABLE `etudiants`
 -- AUTO_INCREMENT pour la table `choixdujour`
 --
 ALTER TABLE `choixdujour`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT pour la table `etudiants`
 --
 ALTER TABLE `etudiants`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
+--
+-- AUTO_INCREMENT pour la table `reponsemirroir`
+--
+ALTER TABLE `reponsemirroir`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

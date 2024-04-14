@@ -3,6 +3,7 @@ const bodyParser = require('body-parser'); // Importez le middleware body-parser
 const app = express();
 const verifyRoute = require('./verify.js');
 const verifyRouteSagi = require('./verifySagi.js');
+const verifyRouteMirror = require('./verifyMirror.js');
 const getNamesRoute = require('./getNames.js');
 const getNamesRouteSagi = require('./getNamesSagi.js');
 const launchChecker = require('./choixdujour.js');
@@ -22,6 +23,7 @@ app.use('/getNames', getNamesRoute);
 app.use('/getNamesSagi', getNamesRouteSagi);
 app.use('/verify', verifyRoute);
 app.use('/verifySagi', verifyRouteSagi);
+app.use('/verifyMirror', verifyRouteMirror);
 app.get('/checkLastLaunch', (req, res) => {
     launchChecker.checkLastLaunch();
     res.sendStatus(200);
