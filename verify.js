@@ -7,25 +7,27 @@ var reponse = [];
 // Middleware to parse JSON bodies
 router.use(express.json());
 
-db.query('SELECT * FROM reponse', (err, results) => {
-    if (err) {
-        console.error('Error verifying guess:', err);
-        res.status(500).json({ error: 'Internal server error' });
-        return;
-    }
 
-    const modifiedResults = results.map(result => {
-        const { id, ...rest } = result;
-        return rest;
-    });
-
-    reponse = modifiedResults;
-});
 
 // Route for verifying guesses
 router.post('/', (req, res) => {
     const guess = req.body.nom;
     console.log('Received guess:', req.body.nom);
+    
+    db.query('SELECT * FROM reponse', (err, results) => {
+        if (err) {
+            console.error('Error verifying guess:', err);
+            res.status(500).json({ error: 'Internal server error' });
+            return;
+        }
+    
+        const modifiedResults = results.map(result => {
+            const { id, ...rest } = result;
+            return rest;
+        });
+    
+        reponse = modifiedResults;
+    });
     
 
     db.query('SELECT * FROM etudiants WHERE eleve = ?', [guess], (err, results) => {
