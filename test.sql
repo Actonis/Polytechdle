@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 14 avr. 2024 à 22:45
+-- Généré le : jeu. 11 avr. 2024 à 17:41
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -41,9 +41,7 @@ INSERT INTO `choixdujour` (`id`, `nom`, `dateduchoix`) VALUES
 (3, 'Jarry Valentine', '2024-04-06'),
 (21, 'Mandoux Leo', '2024-04-07'),
 (22, 'Rey Leo', '2024-04-08'),
-(27, 'Albouze Antoine ', '2024-04-11'),
-(28, 'Peridy Theo', '2024-04-14'),
-(29, 'Dalleau Manon', '2024-04-14');
+(27, 'Albouze Antoine ', '2024-04-11');
 
 --
 -- Déclencheurs `choixdujour`
@@ -142,9 +140,7 @@ INSERT INTO `etudiants` (`id`, `eleve`, `age`, `genre`, `specialite`, `peip`, `c
 (63, 'Judon Raphael', 19, 'Homme', 'Peip', 'Oui a Angers', 'Brun(e)', '', '', 'Peip 1'),
 (64, 'Moncoiffet Leo', 21, 'Homme', 'SAGI', 'Oui a Angers', 'Brun(e)', 'Semestre', 'Pologne', '4A'),
 (66, 'Creusier Thomas ', 22, 'Homme', 'SAGI', 'Oui a Angers', 'Brun(e)', 'Stage', 'Royaume-Unis', '4A'),
-(67, 'Katia Jagueneau', 22, 'Femme', 'SAGI', 'Non', 'Chatain(e)', 'Semestre', 'Malte', '4A'),
-(68, 'Pierrick Jouron', 21, 'Homme', 'SAGI', 'Oui a Angers', 'Brun', 'Stage', 'Brésil', '4A'),
-(69, 'Florentin Lochon', 21, 'Homme', 'SAGI', 'Oui dans le rezo', 'Chatain(e)', 'Semestre', 'Pologne', '4A');
+(67, 'Jagueneau Katia', 21, 'Femme', 'SAGI', 'Non', 'Chatain(e)', 'Semestre', 'Malte', '4A');
 
 -- --------------------------------------------------------
 
@@ -170,33 +166,7 @@ CREATE TABLE `reponse` (
 --
 
 INSERT INTO `reponse` (`id`, `eleve`, `age`, `genre`, `specialite`, `peip`, `couleur_cheveux`, `etudes_etranger`, `pays_etranger`, `annee_etude`) VALUES
-(0, 'Dalleau Manon', 20, 'Femme', 'GBS', 'Non', 'Chatain(e)', 'Stage', 'Tchequie', '4A');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `reponsemirroir`
---
-
-CREATE TABLE `reponsemirroir` (
-  `id` int(11) NOT NULL,
-  `eleve` varchar(250) NOT NULL,
-  `age` int(250) NOT NULL,
-  `genre` varchar(250) NOT NULL,
-  `specialite` varchar(250) NOT NULL,
-  `peip` varchar(250) NOT NULL,
-  `couleur_cheveux` varchar(250) NOT NULL,
-  `etudes_etranger` varchar(250) NOT NULL,
-  `pays_etranger` varchar(250) NOT NULL,
-  `annee_etude` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `reponsemirroir`
---
-
-INSERT INTO `reponsemirroir` (`id`, `eleve`, `age`, `genre`, `specialite`, `peip`, `couleur_cheveux`, `etudes_etranger`, `pays_etranger`, `annee_etude`) VALUES
-(11, 'Peridy Theo', 21, 'Homme', 'SAGI', 'Non', 'Brun(e)', 'Stage', 'Allemagne ', '4A');
+(0, 'Albouze Antoine ', 22, 'Homme', 'GBS', 'Non', 'Brun(e)', 'Stage', 'Danemark ', '4A');
 
 -- --------------------------------------------------------
 
@@ -220,7 +190,119 @@ CREATE TABLE `reponsesagi` (
 --
 
 INSERT INTO `reponsesagi` (`id`, `eleve`, `age`, `genre`, `peip`, `couleur_cheveux`, `etudes_etranger`, `pays_etranger`) VALUES
-(0, 'Peneau Adam', 21, 'Homme', 'Oui a Angers', 'Brun(e)', 'Stage', 'Lituanie ');
+(0, 'Chien Chow Chine Mathys', 21, 'Homme', 'Oui a Angers', 'Chatain(e)', 'Stage', 'Espagne');
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `polyguessr`
+--
+CREATE TABLE `polyguessr` (
+  `id` int(11) NOT NULL,
+  `ecole` varchar(100) NOT NULL,
+  `num_guess` int(11) DEFAULT NULL,
+  `lien` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT INTO `polyguessr` (`id`, `ecole`, `num_guess`, `lien`) VALUES
+(1, 'ENSIBS Lorient', 1, 'https://files.u-angers.fr/data/f-89eba1a631fdb3f99389b2b0.png'),
+(2, 'ENSIBS Lorient', 2, 'https://files.u-angers.fr/data/f-da40089d33d5a7dec97d3c07.png'),
+(3, 'ENSIBS Lorient', 3, 'https://files.u-angers.fr/data/f-826c69fd2b49f9ba0e937a4f.png'),
+
+(4, 'ENSIBS Vannes', 1, 'https://files.u-angers.fr/data/f-561020ef9e58213e433292f3.png'),
+(5, 'ENSIBS Vannes', 2, 'https://files.u-angers.fr/data/f-a3b58b086b35536a9d02d9ea.png'),
+(6, 'ENSIBS Vannes', 3, 'https://files.u-angers.fr/data/f-226c19158c2fe2bcc9b8eb9d.png'),
+
+(7, 'ENSIM', 1, 'https://files.u-angers.fr/data/f-790eaf77c4cee135e207c94e.png'),
+(8, 'ENSIM', 2, 'https://files.u-angers.fr/data/f-bc99290bcd78bc939490a752.png'),
+(9, 'ENSIM', 3, 'https://files.u-angers.fr/data/f-5ca90f8967bfc3051a54a9d7.png'),
+
+(10, 'ISEL', 1, 'https://files.u-angers.fr/data/f-e2ace55600c9348b9288047c.png'),
+(11, 'ISEL', 2, 'https://files.u-angers.fr/data/f-309a0c205fe4b7759a7a015c.png'),
+(12, 'ISEL', 3, 'https://files.u-angers.fr/data/f-2fcefb72f5d390e25fb66b02.png'),
+
+(13, 'ESGT', 1, 'https://files.u-angers.fr/data/f-64374de87ae7955d9f550f9d.png'),
+(14, 'ESGT', 2, 'https://files.u-angers.fr/data/f-16fbb50b853e7b789b40159a.png'),
+(15, 'ESGT', 3, 'https://files.u-angers.fr/data/f-5ca90f8967bfc3051a54a9d7.png'),
+
+(16, 'Polytech Lille', 1, 'https://files.u-angers.fr/data/f-6588271cad7efe2a3f819cc9.png'),
+(17, 'Polytech Lille', 2, 'https://files.u-angers.fr/data/f-bc195bd1211fad00e2af0f19.png'),
+(18, 'Polytech Lille', 3, 'https://files.u-angers.fr/data/f-b405b5610ea26271c31833f1.png'),
+
+(19, 'Polytech Paris Sorbonne', 1, 'https://files.u-angers.fr/data/f-ba2691907af9cc6640a1e3e6.png'),
+(20, 'Polytech Paris Sorbonne', 2, 'https://files.u-angers.fr/data/f-aef80c8dfa13c4d17ac1eee0.png'),
+(21, 'Polytech Paris Sorbonne', 3, 'https://files.u-angers.fr/data/f-9c56fabad7d296da10dd4b64.png'),
+
+(22, 'Polytech Paris Saclay', 1, 'https://files.u-angers.fr/data/f-4dc410ece8b41c6eaba1978a.png'),
+(23, 'Polytech Paris Saclay', 2, 'https://files.u-angers.fr/data/f-af6eb2e5f5e3beaab37f6487.png'),
+(24, 'Polytech Paris Saclay', 3, 'https://files.u-angers.fr/data/f-f880a92a3c2e695bae1832f1.png'),
+
+(25, 'Polytech Nancy', 1, 'https://files.u-angers.fr/data/f-1879c2e05d6670d8fd44b2a3.png'),
+(26, 'Polytech Nancy', 2, 'https://files.u-angers.fr/data/f-2760447989be1cd2fa8e14bc.png'),
+(27, 'Polytech Nancy', 3, 'https://files.u-angers.fr/data/f-c664b90f84ea7e9cb0584dcc.png'),
+
+(28, 'Polytech Orléans', 1, 'https://files.u-angers.fr/data/f-99b3da6e29ccf28c57dbbc4d.png'),
+(29, 'Polytech Orléans', 2, 'https://files.u-angers.fr/data/f-63cd9ee020661b663da4eaaf.png'),
+(30, 'Polytech Orléans', 3, 'https://files.u-angers.fr/data/f-fd152471450ea081a69f78bb.png'),
+
+(31, 'Polytech Dijon', 1, 'https://files.u-angers.fr/data/f-34bb367304a0002d4542a7ea.png'),
+(32, 'Polytech Dijon', 2, 'https://files.u-angers.fr/data/f-06f87d3cbc7230f15e3b72f1.png'),
+(33, 'Polytech Dijon', 3, 'https://files.u-angers.fr/data/f-219d1a6423d7cd436db31f50.png'),
+
+(34, 'Polytech Tours', 1, 'https://files.u-angers.fr/data/f-e1078307c9d117f3256956dd.png'),
+(35, 'Polytech Tours', 2, 'https://files.u-angers.fr/data/f-05d55bcadff4b6dd2814a3dc.png'),
+(36, 'Polytech Tours', 3, 'https://files.u-angers.fr/data/f-3244c7b215b0e48cf6433794.png'),
+
+(37, 'Polytech Angers', 1, 'https://files.u-angers.fr/data/f-0053403c84c500cf014fb507.png'),
+(38, 'Polytech Angers', 2, 'https://files.u-angers.fr/data/f-b39ae6748c89f47e00bcf553.png'),
+(39, 'Polytech Angers', 3, 'https://files.u-angers.fr/data/f-1f04e38ee2e4c710bfa5a11f.png'),
+
+(40, 'Polytech Nantes-Gavy', 1, 'https://files.u-angers.fr/data/f-f0e0f900b763a30f871abad7.png'),
+(41, 'Polytech Nantes-Gavy', 2, 'https://files.u-angers.fr/data/f-4c532b54de38151f2d7e41ad.png'),
+(42, 'Polytech Nantes-Gavy', 3, 'https://files.u-angers.fr/data/f-78368dc20d180885919f62df.png'),
+
+(43, 'Polytech Annecy-Chambéry', 1, 'https://files.u-angers.fr/data/f-fa29dbff79480562f3813b47.png'),
+(44, 'Polytech Annecy-Chambéry', 2, 'https://files.u-angers.fr/data/f-0e6a279f0ec492b4b5d1ae06.png'),
+(45, 'Polytech Annecy-Chambéry', 3, 'https://files.u-angers.fr/data/f-d150ed74bfa0e25771b89862.png'),
+
+(46, 'Polytech Lyon', 1, 'https://files.u-angers.fr/data/f-75dfa75783c0c02879bc122b.png'),
+(47, 'Polytech Lyon', 2, 'https://files.u-angers.fr/data/f-710ecd2cb612286ecae3803b.png'),
+(48, 'Polytech Lyon', 3, 'https://files.u-angers.fr/data/f-7f9c93bbb8a26b1447eee732.png'),
+
+(49, 'Polytech Clermont', 1, 'https://files.u-angers.fr/data/f-359c187031b9c5d3f3832e04.png'),
+(50, 'Polytech Clermont', 2, 'https://files.u-angers.fr/data/f-6f3c95a07b0384d8a53f30e9.png'),
+(51, 'Polytech Clermont', 3, 'https://files.u-angers.fr/data/f-1ddf5531f5247c426a79085f.png'),
+
+(52, 'Polytech Nice Sophia', 1, 'https://files.u-angers.fr/data/f-19abc1f924f29195c1536a55.png'),
+(53, 'Polytech Nice Sophia', 2, 'https://files.u-angers.fr/data/f-726d531633ad08e6073c54d5.png'),
+(54, 'Polytech Nice Sophia', 3, 'https://files.u-angers.fr/data/f-d7872f726d0ec45fdf70beee.png'),
+
+(55, 'Polytech Marseille', 1, 'https://files.u-angers.fr/data/f-6b1ee0fc0b472ba74007d714.png'),
+(56, 'Polytech Marseille', 2, 'https://files.u-angers.fr/data/f-0df7feef0b0fb91039fc9c56.png'),
+(57, 'Polytech Marseille', 3, 'https://files.u-angers.fr/data/f-37180a564ccb84694ea2ac40.png'),
+
+(58, 'Polytech Montpellier', 1, 'https://files.u-angers.fr/data/f-d9f7030a1614cd2eecbed230.png'),
+(59, 'Polytech Montpellier', 2, 'https://files.u-angers.fr/data/f-c44eca2438b678604d9bd3a3.png'),
+(60, 'Polytech Montpellier', 3, 'https://files.u-angers.fr/data/f-18cd7f7c993697a345b13abc.png');
+
+ALTER TABLE `polyguessr`
+  ADD PRIMARY KEY (`id`);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `polyguessrchoix`
+--
+
+CREATE TABLE `polyguessrchoix` (
+  `id` int(11) NOT NULL,
+  `ecole` varchar(100) NOT NULL,
+  `num_guess` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+ALTER TABLE `polyguessrchoix`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour les tables déchargées
@@ -239,12 +321,6 @@ ALTER TABLE `etudiants`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `reponsemirroir`
---
-ALTER TABLE `reponsemirroir`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -252,19 +328,13 @@ ALTER TABLE `reponsemirroir`
 -- AUTO_INCREMENT pour la table `choixdujour`
 --
 ALTER TABLE `choixdujour`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT pour la table `etudiants`
 --
 ALTER TABLE `etudiants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
-
---
--- AUTO_INCREMENT pour la table `reponsemirroir`
---
-ALTER TABLE `reponsemirroir`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

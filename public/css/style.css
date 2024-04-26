@@ -22,6 +22,8 @@ body
     overflow-y: auto;
 }
 
+/* SEXION TITRES */
+
 .wrap {
   position: relative;
   height: 100%;
@@ -610,4 +612,31 @@ footer .disclaimer {
   transition:all .5s ease-in-out;
   border-radius:30px /30px;
   border:2px solid #f6d8b5
+}
+
+#guoguessr
+
+#game-container {
+  text-align: center;
+}
+
+#map-container {
+  width: 600px;
+  height: 400px;
+  margin: 20px auto;
+  border: 2px solid #000;
+  position: relative;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+#guess-form {
+  margin-top: 20px;
+}
+
+#guess {
+  padding: 5px;
 }
